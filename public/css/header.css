@@ -1,0 +1,698 @@
+.site-header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 16px 0;
+    background: transparent;        /* page bg through */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* .site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 18px 0;
+  background: linear-gradient(180deg, rgba(8,11,31,.92), rgba(8,11,31,.7));
+  backdrop-filter: blur(10px);
+} */
+.site-header .container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.search-pill{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--orange);
+  border-radius: var(--radius-pill);
+  padding: 12px 10px 12px 22px;
+  width: clamp(160px, 20vw, 280px);
+  flex-shrink: 0;
+}
+.search-pill input{
+  border: 0;
+  background: transparent;
+  font-weight: 600;
+  font-size: .95rem;
+  width: 100%;
+  color: #1a1200;
+}
+.search-pill input::placeholder{ color: #1a1200; opacity: .8; }
+.search-pill button{
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  background: #1a1a2e;
+  border-radius: 50%;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.main-nav{
+  background: var(--orange);
+  border-radius: var(--radius-pill);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.main-nav a{
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  color: #1a1200;
+  font-size: .97rem;
+  transition: background .2s ease, color .2s ease;
+  white-space: nowrap;
+}
+.main-nav a.is-active,
+.main-nav a:hover{
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.site-header__right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.theme-toggle{
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(140,170,255,.25);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #fff;
+  transition: background .2s ease, transform .15s ease;
+}
+.theme-toggle:hover{
+  background: rgba(255,255,255,.15);
+  transform: scale(1.05);
+}
+
+.nav-toggle{
+  display: none;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(140,170,255,.25);
+  color: #fff;
+  place-items: center;
+  transition: background .2s ease;
+}
+.nav-toggle:hover{ background: rgba(255,255,255,.15); }
+
+.nav-toggle svg line{
+  transition: transform .25s ease, opacity .2s ease;
+  transform-origin: center;
+}
+.nav-toggle.is-active svg line:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+.nav-toggle.is-active svg line:nth-child(2){ opacity: 0; }
+.nav-toggle.is-active svg line:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+
+
+
+
+
+/* Brand colors */
+.social-btn--linkedin{ background: #0a66c2; }
+.social-btn--whatsapp{ background: #25D366; }
+.social-btn--facebook{ background: #1877f2; }
+.social-btn--instagram{
+    background: radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fdf497 5%,
+        #fd5949 45%, #d6249f 60%,
+        #285AEB 90%);
+}
+.social-btn--youtube{ background: #ff0000; }
+
+
+
+/* ---------- Main nav row ---------- */
+.site-header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 16px 0;
+    background: transparent;        /* page bg through — koi blue strip nahi */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.site-header .container,
+.site-header__inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.search-pill{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--orange);
+    border-radius: 999px;
+    padding: 10px 8px 10px 22px;
+    width: clamp(180px, 22vw, 300px);
+    flex-shrink: 0;
+}
+.search-pill input{
+    border: 0;
+    background: transparent;
+    font-weight: 700;
+    font-size: .95rem;
+    width: 100%;
+    color: #1a1200;
+    outline: none;
+}
+.search-pill input::placeholder{ color: #1a1200; opacity: .85; }
+.search-pill button{
+    width: 36px; height: 36px;
+    display: grid; place-items: center;
+    background: transparent;
+    color: #1a1200;
+    flex-shrink: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.main-nav{
+    background: var(--orange);
+    border-radius: 999px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.main-nav a{
+    padding: 11px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: #1a1200;
+    font-size: .95rem;
+    transition: background .2s ease, color .2s ease;
+    white-space: nowrap;
+    background: transparent;
+}
+.main-nav a.is-active{
+    background: var(--navy-900);
+    color: #fff;
+}
+.main-nav a:not(.is-active):hover{
+    background: rgba(0,0,0,.1);
+}
+
+/* Purana __portfolio special-case hata do — sab same lagenge */
+.main-nav__portfolio{
+    background: transparent !important;
+    color: #1a1200 !important;
+    margin-left: 0;
+}
+.main-nav__portfolio:hover{
+    background: rgba(0,0,0,.1) !important;
+}
+.main-nav__portfolio.is-active{
+    background: var(--navy-900) !important;
+    color: #fff !important;
+}
+
+/* ---------- Theme toggle — light circle with dark icon ---------- */
+.theme-toggle{
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: #f4f6fb;
+    border: none;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: #0b0f2b;
+    cursor: pointer;
+    transition: background .2s ease, transform .15s ease;
+}
+.theme-toggle:hover{
+    background: #ffffff;
+    transform: scale(1.06);
+}
+
+.nav-toggle{
+    display: none;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(140,170,255,.25);
+    color: #fff;
+    place-items: center;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+.nav-toggle:hover{ background: rgba(255,255,255,.15); }
+
+.nav-toggle svg line{
+    transition: transform .25s ease, opacity .2s ease;
+    transform-origin: center;
+}
+.nav-toggle.is-active svg line:nth-child(1){ transform: translateY(6px) rotate(45deg); }
+.nav-toggle.is-active svg line:nth-child(2){ opacity: 0; }
+.nav-toggle.is-active svg line:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- Light theme overrides ---------- */
+body[data-theme="light"] .site-topbar{
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+body[data-theme="light"] .site-header{
+    background: transparent;        /* light theme pe bhi transparent */
+    box-shadow: none;
+}
+
+body[data-theme="light"] .theme-toggle{
+    background: #eef1fa;
+    color: #0b0f2b;
+}
+body[data-theme="light"] .theme-toggle:hover{
+    background: #e2e8f7;
+}
+
+/* ---------- Responsive ---------- */
+/* @media (max-width: 1024px){
+    .topbar__social{ display: none; }
+    .site-topbar{ padding: 10px 20px; }
+} */
+@media (max-width: 1024px){
+    /* Naya pill topbar mobile pe poori tarah hide */
+    .topbar{ display: none !important; }
+    .site-topbar{ display: none !important; }
+    .topbar__social{ display: none; }
+
+    /* Hamburger show karo — header.css mein override zaroori hai */
+    .nav-toggle{ display: grid !important; }
+}
+
+
+@media (max-width: 720px){
+    .site-topbar{
+        font-size: .75rem;
+        padding: 8px 16px;
+        gap: 8px;
+    }
+    .topbar__mail{ display: none; }
+    .topbar__faq{ padding: 6px 16px; font-size: .72rem; }
+    .topbar__contact{ padding: 6px 2px; font-size: .72rem; }
+    .topbar__whatsapp{ padding: 6px 14px; font-size: .72rem; }
+}
+
+
+
+
+
+/* TOP BAR CSS */
+
+/* ============================================================
+   TOP BAR — Pill-shaped, concave-curve style
+   ============================================================ */
+.topbar{
+    position: relative;
+    z-index: 60;
+    isolation: isolate;
+
+    --navy-900:#080b1f;
+    --topbar-navy:#0b1738;           /* ← lighter + blue tint — page se alag */
+    --topbar-orange:#F7A600;
+    --topbar-height:56px;
+
+    width:100%;
+    margin:0 auto;
+    height:var(--topbar-height);
+    background:var(--topbar-navy);
+    border-radius:999px;
+    display:flex;
+    align-items:stretch;
+    overflow:hidden;
+    border: 1px solid rgba(122, 162, 255, 0.18);   /* ← subtle blue border */
+    box-shadow:
+        0 10px 30px -12px rgba(0, 0, 0, 0.55),     /* outer depth shadow */
+        0 0 40px -12px rgba(77, 108, 250, 0.35),   /* blue glow (theme accent) */
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),   /* top highlight — premium feel */
+        inset 0 -2px 0 0 #22d3ee;
+    font-family:'Poppins',sans-serif;
+}
+
+.topbar .seg{
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+}
+.topbar .seg.navy{
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+    gap:10px;
+    padding:0 22px;
+    text-decoration:none;
+}
+.topbar .seg.navy.email{
+    padding-left:26px;
+    padding-right:40px;
+    border-radius:999px 0 0 999px;
+    position:relative;
+    z-index:2;
+}
+.topbar .seg.navy.email::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    right:-28px;
+    width:56px;
+    height:56px;
+    background:var(--topbar-navy);
+    border-radius:50%;
+    transform:translateY(-50%);
+    z-index:2;
+}
+.topbar .seg.navy.contact{
+    padding-left:40px;
+    padding-right:26px;
+    border-radius:0 999px 999px 0;
+    position:relative;
+    z-index:2;
+}
+.topbar .seg.navy.contact::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:-28px;
+    width:56px;
+    height:56px;
+    background:var(--topbar-navy);
+    border-radius:50%;
+    transform:translateY(-50%);
+    z-index:2;
+}
+.topbar .seg.orange.faq{
+    padding-right:60px;
+    border-radius:999px 0 0 999px;
+}
+.topbar .seg.orange{
+    background:var(--topbar-orange);
+    color:var(--topbar-navy);
+    border-radius:999px;
+    font-weight:700;
+    font-size:14px;
+    gap:10px;
+    padding:0 26px;
+    text-decoration:none;
+    position:relative;
+    z-index:1;
+}
+.topbar .seg.orange.whatsapp{
+    padding-left:60px;
+    border-radius:0 999px 999px 0;
+}
+.topbar .seg.icons{
+    flex:1;
+    justify-content:center;
+    gap:18px;
+    padding:0 24px;
+}
+.topbar .seg.icons a{
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:15px;
+    transition:transform .15s ease, opacity .15s ease;
+}
+.topbar .seg.icons a:hover{ transform:translateY(-2px); opacity:.85; }
+.topbar .icon-linkedin{ background:#0A66C2; }
+.topbar .icon-whatsapp{ background:#25D366; }
+.topbar .icon-facebook{ background:#1877F2; }
+.topbar .icon-instagram{
+    background:radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fdf497 5%,
+        #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.topbar .icon-youtube{ background:#FF0000; }
+
+.topbar .wa-badge{
+    width:22px;height:22px;border-radius:50%;
+    background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    color:#25D366;font-size:12px;
+    flex:none;
+}
+.topbar .mail-badge{
+    width:20px;height:20px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;flex:none;
+}
+
+@media (max-width: 900px){
+    .topbar .seg.navy.email span.label,
+    .topbar .seg.orange.faq span{ display:none; }
+    .topbar .seg.icons{ gap:12px; }
+}
+@media (max-width: 640px){
+    .topbar{ height:50px; }
+    .topbar .seg.orange,
+    .topbar .seg.navy{ padding:0 14px; font-size:12.5px; }
+    .topbar .seg.icons a{ width:26px; height:26px; font-size:13px; }
+}
+
+
+/* ============================================================
+   LIGHT THEME — Topbar overrides
+   ============================================================ */
+body[data-theme="light"] .topbar{
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(11,30,66,.08);   /* halka shadow — dark line khatam */
+}
+
+/* Left curve (email ke baad wala circle) — topbar bg se match kare */
+html body[data-theme="light"] .topbar .seg.navy.email::after{
+    background: #ffffff !important;
+}
+/* body[data-theme="light"] .topbar .seg.navy.email::after{
+    background: #ffffff;
+} */
+
+/* Right curve (FAQ ke baad wala circle) — orange FAQ se match kare */
+body[data-theme="light"] .topbar .seg.navy.contact::before{
+    background: white;
+}
+
+/* Text readable ho light bg par */
+body[data-theme="light"] .topbar .seg.navy,
+body[data-theme="light"] .topbar .seg.navy.email,
+body[data-theme="light"] .topbar .seg.navy.contact{
+    color: #0B1E42;
+}
+
+/* Mail icon bhi dark ho jaye */
+body[data-theme="light"] .topbar .mail-badge{
+    color: #0B1E42;
+}
+
+body[data-theme="light"] .topbar{
+    background: #ffffff !important;
+    border: 1px solid rgba(11, 15, 43, 0.08);
+    box-shadow:
+        0 10px 30px -12px rgba(11, 15, 43, 0.15),
+        0 0 40px -12px rgba(255, 171, 30, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -2px 0 0 #22d3ee;              /* ⬅️ cyan line */
+    position: relative;
+    z-index: 60;
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   HEADER — Mobile drawer (hamburger menu)
+   Yeh styling home.css se yahan move ki gayi hai taake
+   header self-contained rahe.
+   ========================================================= */
+@media (max-width: 1024px){
+  .nav-toggle{ display: grid !important; }
+
+  .main-nav{
+    position: fixed;
+    top: 82px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(11,15,43,.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(120,150,255,.14);
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,.85);
+    transform: translateY(-16px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1),
+                opacity .25s ease,
+                visibility 0s linear .3s;
+    z-index: 60;
+  }
+  .main-nav.is-open{
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  .main-nav a{
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  .main-nav a.is-active,
+  .main-nav a:hover{
+    background: rgba(77,108,250,.18);
+    color: #fff;
+  }
+
+  .search-pill{ display: none; }
+}
+
+@media (max-width: 720px){
+  .site-header{ padding: 12px 0; }
+  .main-nav{ top: 72px; }
+}
+
+@media (max-width: 560px){
+  .site-header__right{ gap: 8px; }
+  .theme-toggle,
+  .nav-toggle{ width: 40px; height: 40px; }
+  .main-nav{ top: 68px; left: 12px; right: 12px; }
+}
+
+/* Light theme mobile drawer */
+@media (max-width: 1024px){
+  body[data-theme="light"] .main-nav{
+    background: rgba(255,255,255,.98);
+    border-color: rgba(11,15,43,.08);
+    box-shadow: 0 24px 60px -20px rgba(11,15,43,.18);
+  }
+  body[data-theme="light"] .main-nav a{ color: var(--ink-100); }
+  body[data-theme="light"] .main-nav a.is-active,
+  body[data-theme="light"] .main-nav a:hover{
+    background: rgba(77,108,250,.12);
+    color: var(--ink-100);
+  }
+}
+
+
+/* =========================================================
+   MOBILE HEADER — Right aligned toggles + rounded-square hamburger
+   ========================================================= */
+@media (max-width: 1024px){
+  /* Right group ko right taraf push karo (logo left mein aayega) */
+  .site-header__inner{
+    justify-content: space-between;
+  }
+  .site-header__right{
+    margin-left: auto;      /* ← yeh toggles ko right le aayega */
+    gap: 10px;
+  }
+
+  /* Hamburger — rounded square, reference jaisa */
+  .nav-toggle{
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;    /* ← circle nahi, rounded square */
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(140,170,255,.28);
+    color: #fff;
+    display: grid !important;
+    place-items: center;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .nav-toggle:hover{
+    background: rgba(255,255,255,.12);
+  }
+
+  /* Hamburger ke andar ki lines — thori chhoti aur tight */
+  .nav-toggle svg{
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Theme toggle — circle rakho (same jaisa hai) */
+  .theme-toggle{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+}
+
+/* Light theme mobile hamburger */
+@media (max-width: 1024px){
+  body[data-theme="light"] .nav-toggle{
+    background: rgba(11,15,43,.05);
+    border-color: rgba(11,15,43,.15);
+    color: #0b0f2b;
+  }
+  body[data-theme="light"] .nav-toggle:hover{
+    background: rgba(11,15,43,.09);
+  }
+}
+
+
+/* =========================================================
+   MOBILE HEADER — Frosted glass background
+   Transparent rehta hai lekin content ke upar prominent lagta hai
+   ========================================================= */
+@media (max-width: 1024px){
+  .site-header{
+    background: rgba(8, 11, 31, 0.72);      /* halka navy, semi-transparent */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(122, 162, 255, 0.12);
+    padding: 12px 0;
+  }
+}
+
+/* Light theme mobile header */
+@media (max-width: 1024px){
+  body[data-theme="light"] .site-header{
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(11, 15, 43, 0.08);
+  }
+}
+
+/* Chhoti screens pe thora aur solid (optional) */
+@media (max-width: 560px){
+  .site-header{
+    background: rgba(8, 11, 31, 0.85);
+  }
+  body[data-theme="light"] .site-header{
+    background: rgba(255, 255, 255, 0.85);
+  }
+}

@@ -1,0 +1,464 @@
+/* ===== Scoped tokens (only affect this page) ===== */
+    .contact-page {
+         --navy: #080b1f;         /* home --navy-900 */
+    --navy-soft: #0b0f2b;    /* home --navy-800 */
+    --card-navy: #0e1338;    /* home --navy-700 */
+    --blue: #4d6cfa;         /* home --blue-500 */
+    --blue-light: #7aa2ff;   /* home hero gradient ka lighter blue */
+    --orange: #ffab1e;       /* home --orange */
+    --orange-soft: #f59500;  /* home --orange-600 */
+    --white: #ffffff;        /* same */
+    --muted: #9aa1c4;        /* home --ink-400 */
+       
+        --border: rgba(255,255,255,0.08);
+        background: var(--navy);
+        color: var(--white);
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        overflow-x: hidden;
+    }
+
+    .contact-page * { box-sizing: border-box; }
+
+    /* ---------- Top eyebrow ---------- */
+    .cp-eyebrow {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 18px 24px 0;
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.3px;
+    }
+
+    /* ---------- Nav ---------- */
+    .cp-nav {
+        max-width: 1200px;
+        margin: 10px auto 0;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .cp-search {
+        background: var(--orange);
+        border-radius: 999px;
+        padding: 8px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #3a2100;
+        font-size: 13px;
+        font-weight: 600;
+        min-width: 160px;
+    }
+    .cp-search svg { flex-shrink: 0; }
+
+    .cp-nav-links {
+        background: var(--navy-soft);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .cp-nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 13px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        opacity: 0.85;
+    }
+    .cp-nav-links a.active {
+        background: var(--orange);
+        color: #3a2100;
+        font-weight: 600;
+        opacity: 1;
+    }
+
+    /* ---------- Hero ---------- */
+    .cp-hero {
+    max-width: 100%;              /* full width — 1200px limit hatai */
+    margin: 0;                    /* koi gap nahi upar se */
+    padding: 0;                   /* koi side padding nahi */
+    width: 100%;
+}
+
+.cp-hero-inner {
+    position: relative;
+    border-radius: 0;             /* koi rounded corner nahi */
+    overflow: hidden;
+    height: 380px;                /* thora aur bada — full bleed ke liye */
+    width: 100%;
+    /* Chaaron taraf se navy bg mein blend — koi edge/corner visible nahi.
+       Radial gradient center ko clear rakhta hai, kinare navy ho jaate hain. */
+    background:
+        radial-gradient(ellipse 90% 70% at 50% 50%,
+            rgba(8, 11, 31, 0)    0%,
+            rgba(8, 11, 31, 0)    40%,
+            rgba(8, 11, 31, 0.35) 65%,
+            rgba(8, 11, 31, 0.85) 88%,
+            rgba(8, 11, 31, 1)    100%),
+         linear-gradient(180deg,
+            rgba(8, 11, 31, 0.6)  0%,
+            rgba(8, 11, 31, 0)    25%,
+            rgba(8, 11, 31, 0)    45%,
+            rgba(8, 11, 31, 0.7)  70%,
+            rgba(8, 11, 31, 0.95) 88%,
+            rgba(8, 11, 31, 1)    100%),
+        url('/images/hero-desk.png') center/cover no-repeat;
+}
+    
+
+
+   .cp-hero-text {
+    position: absolute;
+    left: 60px;        /* simple fixed value — koi formula nahi */
+    bottom: 90px;      /* thora neeche */
+    /* max-width: 480px; */
+     max-width: 720px;    /* barhao taake heading 1 line mein fit ho */
+}
+    
+
+    .cp-hero-text h1 {
+        font-size: clamp(2rem, 4.4vw, 3.5rem);
+        margin: 0 0 8px;
+        font-weight: 800;
+    }
+
+/* Sirf "Contact" word pe gradient */
+.cp-hero-text h1 .grad {
+    background: linear-gradient(95deg, #4d6cfa 0%, #7aa2ff 55%, #b3c6ff 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+}
+
+    .cp-hero-text p {
+        margin: 0;
+        color: var(--muted);
+        /* font-size: 14px; */
+        font-size: 1.02rem;
+    }
+
+    /* ---------- Main two-column layout ---------- */
+    .cp-main {
+        max-width: 1200px;
+        margin: 60px auto 0;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+    }
+
+    /* Left column */
+    .cp-left h2 {
+        /* font-size: 34px; */
+        line-height: 1.25;
+         font-size: clamp(1.6rem, 3.4vw, 2.4rem);   /* same as home section headings */
+    font-weight: 800;                          /* same as main headings */
+        /* font-weight: 700; */
+        margin: 0 0 16px;
+    }
+    .cp-left h2 .accent {
+        background: linear-gradient(90deg, var(--blue-light), var(--orange-soft));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    .cp-left > p {
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.7;
+        max-width: 420px;
+        margin: 0 0 28px;
+    }
+
+    .cp-features {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+
+
+
+    .cp-feature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #eef1f8;                         /* light card */
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 18px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+}
+
+.cp-feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.cp-feature-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Soft gradient tinted backgrounds — reference image jaisa */
+.cp-feature-icon.blue {
+    background: linear-gradient(135deg, #dbe6ff 0%, #b3c8ff 100%);
+    color: #2a55f0;
+}
+.cp-feature-icon.purple {
+    background: linear-gradient(135deg, #e8dcff 0%, #ccb3ff 100%);
+    color: #7a45e6;
+}
+.cp-feature-icon.orange {
+    background: linear-gradient(135deg, #ffeeda 0%, #ffd188 100%);
+    color: #e08a00;
+}
+
+.cp-feature-body h4 {
+    margin: 0 0 3px;
+    font-size: 1.03rem;
+    font-weight: 600;
+    color: #14172a;                              /* dark title */
+    letter-spacing: 0.1px;
+}
+.cp-feature-body p {
+    margin: 0;
+    font-size: 14px;
+    color: #6a7090;                              /* medium gray subtitle */
+    line-height: 1.5;
+}
+   
+
+.cp-office-image {
+    position: relative;
+    height: 260px;
+    padding: 0;
+    background: transparent;
+    clip-path: none;
+    border-radius: 0;
+}
+
+/* Blue panel — image ke peeche, thora rotate, rounded corners */
+.cp-office-image::before {
+    content: "";
+    position: absolute;
+    inset: -14px -18px -14px -18px;      /* blue ka border image se bahar */
+    background: linear-gradient(135deg, #1f3fd8 0%, #3b6bff 55%, #0f1f8c 100%);
+    border-radius: 28px;
+    transform: rotate(-3deg);              /* thora tilt */
+    transform-origin: center;
+    box-shadow: 0 22px 55px -22px rgba(40,72,224,0.55);
+    z-index: 0;
+}
+
+/* Image — straight, rounded, blue ke upar */
+.cp-office-image img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 18px;
+}
+    
+    /* Right column - form */
+    .cp-right-label {
+        color: var(--blue-light);
+        font-size: 25px;
+        font-weight: 700;
+        margin: 0 0 16px;
+    }
+    .cp-form-card {
+        background: var(--white);
+        color: #1b1d2a;
+        border-radius: 18px;
+        padding: 28px;
+    }
+    .cp-form-card h3 {
+        margin: 0 0 4px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .cp-form-card h3 .hi { color: var(--blue); }
+    .cp-form-card .sub {
+        margin: 0 0 20px;
+        font-size: 12px;
+        color: #7c7f92;
+    }
+    .cp-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+    }
+    .cp-field { display: flex; flex-direction: column; gap: 6px; }
+    .cp-field label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+    }
+    .cp-field label .req { color: var(--orange); }
+    .cp-field input,
+    .cp-field textarea {
+        border: 1px solid #e4e5ec;
+        border-radius: 8px;
+        padding: 11px 12px;
+        font-size: 13px;
+        font-family: inherit;
+        outline: none;
+        background: #fafafe;
+    }
+    .cp-field input:focus,
+    .cp-field textarea:focus {
+        border-color: var(--blue);
+        background: #fff;
+    }
+    .cp-field textarea { resize: vertical; min-height: 90px; }
+
+    .cp-submit {
+        width: 100%;
+        border: none;
+        background: var(--blue);
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 13px;
+        border-radius: 9px;
+        cursor: pointer;
+        margin-top: 6px;
+        transition: background 0.2s ease;
+    }
+    .cp-submit:hover { background: #2b47e0; }
+
+    .cp-privacy {
+        margin: 12px 0 0;
+        font-size: 11px;
+        color: #9497a8;
+        text-align: center;
+    }
+
+    /* ---------- Contact strip ---------- */
+    .cp-strip {
+        max-width: 1150px;
+        margin: 56px auto 0;
+        padding: 22px 32px;
+        background: var(--card-navy);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .cp-strip-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 220px;
+    }
+
+.cp-strip-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;                    /* icon color */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.cp-strip-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+    /* .cp-strip-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 15px;
+    } */
+
+
+    .cp-strip-icon.red { background: #ff5c5c; }
+    .cp-strip-icon.orange { background: var(--orange); }
+    .cp-strip-icon.green { background: #22c55e; }
+    .cp-strip-item h5 {
+        margin: 0 0 2px;
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 500;
+    }
+    .cp-strip-item p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .cp-strip-divider {
+        width: 1px;
+        height: 34px;
+        background: var(--border);
+    }
+
+    /* ---------- Bottom CTA ---------- */
+    .cp-bottom {
+        max-width: 1150px;
+        margin: 56px auto 0;
+        padding: 0 32px 70px;
+    }
+
+    .cp-bottom h3 {
+    color: var(--blue-light);
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);   /* same as home section headings */
+    font-weight: 800;                          /* same as main headings */
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+    /* .cp-bottom h3 {
+        color: var(--blue-light);
+        font-size: 22px;
+        margin: 0 0 6px;
+    } */
+    .cp-bottom-rule {
+        width: 60px;
+        height: 3px;
+        background: var(--orange);
+        border-radius: 3px;
+        margin-bottom: 18px;
+    }
+    .cp-bottom p {
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.8;
+        max-width: 900px;
+        margin: 0;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+        .cp-main { grid-template-columns: 1fr; }
+        .cp-hero-inner { height: 260px; }
+        .cp-hero-text h1 { font-size: 24px; }
+        .cp-form-row { grid-template-columns: 1fr; }
+        .cp-strip { flex-direction: column; align-items: flex-start; }
+        .cp-strip-divider { display: none; }
+    }
