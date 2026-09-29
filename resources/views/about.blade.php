@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+{{-- ⬇️ YEH NAYA BLOCK ⬇️ --}}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('rr-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+{{-- ⬆️ YEH NAYA BLOCK ⬆️ --}}
+
+
     <title>About Us</title>
 
     {{-- Google Font: Inter --}}
@@ -14,10 +31,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     {{-- Page specific CSS --}}
-    <link rel="stylesheet" href="{{ asset('website-css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
 <body>
 
+<script>document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') || 'dark');</script>
+
+@include('layouts.header')
     
     <main class="about-page">
 
@@ -73,15 +96,7 @@
         </section>
 
 
-    <!DOCTYPE html>
-<html lang="ur">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features Section</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+   
 <!-- ===== CORE TENETS SECTION (BENTO AURORA) ===== -->
 <section class="core-tenets-section">
     
@@ -158,8 +173,7 @@
     </div>
 </section>
 
-</body>
-</html>
+
         
 
 
@@ -278,10 +292,11 @@
     </main>
 
 
+    <script src="{{ asset('js/home.js') }}" defer></script>
     <script src="{{ asset('js/about.js') }}" defer></script>
 
 
-        @include('layout.footer')
+        @include('layouts.footer')
 
 
 

@@ -12,6 +12,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
+      {{-- ⬇️ YEH NAYA BLOCK ⬇️ --}}
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('rr-theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    {{-- ⬆️ YEH NAYA BLOCK ⬆️ --}}
+
     <title>Contact Us | RR Technologies</title>
     <meta name="description" content="Get in touch with RR Technologies for web design, web development and digital marketing services.">
     <link rel="canonical" href="{{ url()->current() }}">
@@ -27,43 +42,15 @@
     {{-- Page-specific styles for the contact layout --}}
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 </head>
-<body data-theme="dark">
+<!-- <body data-theme="dark"> -->
+    <body>
+<script>document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') || 'dark');</script>
 
     {{-- ===================== Header (same as home.blade.php) ===================== --}}
     @include('layouts.header')
-    <!-- <header class="site-header">
-        <div class="container">
-            <form class="search-pill" role="search" onsubmit="return false;">
-                <label for="site-search" class="sr-only" style="position:absolute;left:-9999px;">Search</label>
-                <input type="search" id="site-search" name="q" placeholder="Search">
-                <button type="submit" aria-label="Submit search">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
-            </form>
-
-            <nav class="main-nav" id="primaryNav" aria-label="Primary">
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('/') }}#about">About</a>
-                <a href="{{ url('/') }}#services">Services</a>
-                <a href="{{ url('/contact') }}" class="is-active">Contact Us</a>
-            </nav>
-
-            <div class="site-header__right">
-                <button class="theme-toggle" aria-label="Toggle light / dark theme">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-                </button>
-
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
-                        <line x1="4" y1="7" x2="20" y2="7"/>
-                        <line x1="4" y1="12" x2="20" y2="12"/>
-                        <line x1="4" y1="17" x2="20" y2="17"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header> -->
+    
 
     <main>
         {{-- ===================== Contact page content ===================== --}}
@@ -248,45 +235,8 @@
     </main>
 
     {{-- ===================== Footer (same as home.blade.php) ===================== --}}
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__top">
-                <div class="site-footer__brand">
-                    <h4>RR Technologies</h4>
-                    <p>We build fast, custom websites and digital marketing strategies that help small and large businesses grow online.</p>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/') }}#about">About</a></li>
-                        <li><a href="{{ url('/') }}#services">Services</a></li>
-                        <li><a href="{{ url('/contact') }}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="{{ url('/') }}#services">Web Design &amp; Development</a></li>
-                        <li><a href="{{ url('/') }}#services">E-Commerce Solutions</a></li>
-                        <li><a href="{{ url('/') }}#services">Application Development</a></li>
-                        <li><a href="{{ url('/') }}#services">SEO &amp; Digital Marketing</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Get In Touch</h4>
-                    <ul>
-                        <li><a href="mailto:hello@rrtechnologies.com">hello@rrtechnologies.com</a></li>
-                        <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="site-footer__bottom">
-                <span>&copy; {{ date('Y') }} RR Technologies. All rights reserved.</span>
-                <span>Built with care by RR Technologies.</span>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
+   
 
     <script src="{{ asset('js/home.js') }}" defer></script>
 </body>

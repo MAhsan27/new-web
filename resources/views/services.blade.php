@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{{-- ⬇️ YEH NAYA BLOCK ⬇️ --}}
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('rr-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+{{-- ⬆️ YEH NAYA BLOCK ⬆️ --}}
+
+
+
     <title>Our Services</title>
-    <link rel="stylesheet" href="{{ asset('website-css/services.css') }}">
+    <!-- ✅ SAHI ORDER -->
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/services.css') }}">
+<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     
     <!-- Fonts for Hexagon Section -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +34,31 @@
 </head>
 <body>
 
+<script>document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') || 'dark');</script>
+
+@include('layouts.header')
+
+    {{-- ===================== Header ===================== --}}
+
+     <div class="cp-hero">
+                <div class="cp-hero-inner">
+                    <div class="cp-hero-text">
+                        <h1>Our  <span class="grad">Services</span></h1>
+                        <p>Delivering End-to-End Digital Solutions To Scale Your Business And Bring Your Ideas To Life.</p>
+                    </div>
+                </div>
+            </div>
+
    <!-- ================= Hero / Breadcrumb Section ================= -->
-<section class="services-hero">
-    <img src="{{ asset('images/services.jpg') }}" alt="Services Background" class="hero-bg-image">
+<!-- <section class="services-hero">
+    <img src="{{ asset('images/services.jpg') }}" alt="Services Background" class="hero-bg-image"> -->
     
     <!-- Hero Content -->
-    <div class="hero-content">
+    <!-- <div class="hero-content">
         <h1>Services</h1>
         <p class="hero-subtitle">Delivering End-to-End Digital Solutions To Scale Your Business And Bring Your Ideas To Life.</p>
     </div>
-</section>
+</section> -->
     <!-- ================= Core Services Section ================= -->
     <section class="core-services">
         <div class="section-header">
@@ -328,11 +363,12 @@
         
 
 
+    <script src="{{ asset('js/home.js') }}" defer></script>
     <script src="{{ asset('js/services.js') }}" defer></script>
 
 
 
-    @include('layout.footer')
+    @include('layouts.footer')
 
 
     

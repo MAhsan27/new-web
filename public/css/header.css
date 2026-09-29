@@ -1,148 +1,15 @@
+/* =========================================================
+   HEADER — RR Technologies
+   Clean consolidated version
+   ========================================================= */
+
+/* ---------- Site Header base ---------- */
 .site-header{
     position: sticky;
     top: 0;
     z-index: 50;
     padding: 16px 0;
-    background: transparent;        /* page bg through */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-/* .site-header{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  padding: 18px 0;
-  background: linear-gradient(180deg, rgba(8,11,31,.92), rgba(8,11,31,.7));
-  backdrop-filter: blur(10px);
-} */
-.site-header .container{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.search-pill{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  background: var(--orange);
-  border-radius: var(--radius-pill);
-  padding: 12px 10px 12px 22px;
-  width: clamp(160px, 20vw, 280px);
-  flex-shrink: 0;
-}
-.search-pill input{
-  border: 0;
-  background: transparent;
-  font-weight: 600;
-  font-size: .95rem;
-  width: 100%;
-  color: #1a1200;
-}
-.search-pill input::placeholder{ color: #1a1200; opacity: .8; }
-.search-pill button{
-  width: 34px; height: 34px;
-  display: grid; place-items: center;
-  background: #1a1a2e;
-  border-radius: 50%;
-  color: var(--orange);
-  flex-shrink: 0;
-}
-
-.main-nav{
-  background: var(--orange);
-  border-radius: var(--radius-pill);
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.main-nav a{
-  padding: 12px 22px;
-  border-radius: var(--radius-pill);
-  font-weight: 600;
-  color: #1a1200;
-  font-size: .97rem;
-  transition: background .2s ease, color .2s ease;
-  white-space: nowrap;
-}
-.main-nav a.is-active,
-.main-nav a:hover{
-  background: var(--navy-900);
-  color: var(--white);
-}
-
-.site-header__right{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.theme-toggle{
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(140,170,255,.25);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  color: #fff;
-  transition: background .2s ease, transform .15s ease;
-}
-.theme-toggle:hover{
-  background: rgba(255,255,255,.15);
-  transform: scale(1.05);
-}
-
-.nav-toggle{
-  display: none;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(140,170,255,.25);
-  color: #fff;
-  place-items: center;
-  transition: background .2s ease;
-}
-.nav-toggle:hover{ background: rgba(255,255,255,.15); }
-
-.nav-toggle svg line{
-  transition: transform .25s ease, opacity .2s ease;
-  transform-origin: center;
-}
-.nav-toggle.is-active svg line:nth-child(1){ transform: translateY(6px) rotate(45deg); }
-.nav-toggle.is-active svg line:nth-child(2){ opacity: 0; }
-.nav-toggle.is-active svg line:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
-
-
-
-
-
-
-/* Brand colors */
-.social-btn--linkedin{ background: #0a66c2; }
-.social-btn--whatsapp{ background: #25D366; }
-.social-btn--facebook{ background: #1877f2; }
-.social-btn--instagram{
-    background: radial-gradient(circle at 30% 110%,
-        #fdf497 0%, #fdf497 5%,
-        #fd5949 45%, #d6249f 60%,
-        #285AEB 90%);
-}
-.social-btn--youtube{ background: #ff0000; }
-
-
-
-/* ---------- Main nav row ---------- */
-.site-header{
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    padding: 16px 0;
-    background: transparent;        /* page bg through — koi blue strip nahi */
+    background: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
@@ -155,6 +22,7 @@
     gap: 16px;
 }
 
+/* ---------- Search pill ---------- */
 .search-pill{
     display: flex;
     align-items: center;
@@ -177,8 +45,10 @@
 }
 .search-pill input::placeholder{ color: #1a1200; opacity: .85; }
 .search-pill button{
-    width: 36px; height: 36px;
-    display: grid; place-items: center;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
     background: transparent;
     color: #1a1200;
     flex-shrink: 0;
@@ -186,6 +56,7 @@
     cursor: pointer;
 }
 
+/* ---------- Main nav ---------- */
 .main-nav{
     background: var(--orange);
     border-radius: 999px;
@@ -212,41 +83,118 @@
     background: rgba(0,0,0,.1);
 }
 
-/* Purana __portfolio special-case hata do — sab same lagenge */
-.main-nav__portfolio{
-    background: transparent !important;
-    color: #1a1200 !important;
-    margin-left: 0;
-}
-.main-nav__portfolio:hover{
-    background: rgba(0,0,0,.1) !important;
-}
-.main-nav__portfolio.is-active{
-    background: var(--navy-900) !important;
-    color: #fff !important;
+/* ---------- Right side toggles ---------- */
+.site-header__right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
-/* ---------- Theme toggle — light circle with dark icon ---------- */
-.theme-toggle{
-    width: 46px; height: 46px;
-    border-radius: 50%;
-    background: #f4f6fb;
-    border: none;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    color: #0b0f2b;
+
+/* =========================================================
+   PREMIUM SPLIT HORIZON TOGGLE
+   ========================================================= */
+
+   /* =========================================================
+   PREMIUM SPLIT HORIZON TOGGLE (Dark Mode Enhanced)
+   ========================================================= */
+.theme-toggle {
+    position: relative;
+    width: 80px;
+    height: 36px;
+    background: #03050a;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.8);
     cursor: pointer;
-    transition: background .2s ease, transform .15s ease;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: all 0.4s ease;
+    margin: 0 10px;
 }
-.theme-toggle:hover{
-    background: #ffffff;
-    transform: scale(1.06);
+
+/* Track (Background) ka Dark Mode Glow */
+.theme-toggle:has(.premium-toggle-input:checked) {
+    background: #0a1220; /* Pure black ki jagah dark blue */
+    border-color: rgba(255, 171, 30, 0.6);
+    box-shadow: 
+        0 0 15px rgba(255, 171, 30, 0.3), /* Outer glowing halo */
+        inset 0 2px 6px rgba(0,0,0,0.8);
 }
+
+.premium-toggle-input { display: none; }
+
+/* Moving Thumb */
+.premium-toggle-thumb {
+    width: 52px;
+    height: 30px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Light Mode Glow */
+    box-shadow: 0 0 0 1px rgba(255, 200, 100, 0.3), 0 0 15px rgba(255, 180, 50, 0.2), 0 4px 8px rgba(0,0,0,0.5);
+    transform: translateX(0);
+}
+
+/* Static Moon (Right side) */
+.theme-toggle .track-moon {
+    position: absolute;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 4px 4px 0 0 #0d1f3c;
+    transform: rotate(-15deg);
+    transition: all 0.4s ease;
+}
+
+/* Dark Mode mein Moon ka Glow */
+.theme-toggle:has(.premium-toggle-input:checked) .track-moon {
+    box-shadow: 4px 4px 0 0 #4d6cfa; /* Bright Blue Moon */
+    filter: drop-shadow(0 0 6px rgba(77, 108, 250, 0.8)); /* Moon glow */
+}
+
+/* SVG Art Transitions */
+.toggle-art {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    transition: opacity 0.4s ease;
+}
+.light-art { opacity: 1; }
+.dark-art { opacity: 0; }
+
+/* --- CHECKED STATE (DARK MODE ACTIVE) --- */
+
+/* Thumb Move + Strong Neon Glow */
+.premium-toggle-input:checked + .premium-toggle-thumb {
+    transform: translateX(24px);
+    box-shadow: 
+        0 0 0 1px rgba(255, 171, 30, 0.8), 
+        0 0 20px rgba(255, 171, 30, 0.8), /* Neon glow */
+        0 4px 10px rgba(0,0,0,0.6);
+}
+
+.premium-toggle-input:checked + .premium-toggle-thumb .light-art { opacity: 0; }
+
+/* Andar ki SVG ko roshan (glow) karne ke liye filter */
+.premium-toggle-input:checked + .premium-toggle-thumb .dark-art { 
+    opacity: 1; 
+    filter: brightness(1.4) contrast(1.2) drop-shadow(0 0 2px rgba(77, 108, 250, 0.5)); 
+}
+
+
+
 
 .nav-toggle{
-    display: none;
-    width: 44px; height: 44px;
+    display: none !important; /* Force hide on desktop */
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: rgba(255,255,255,.08);
     border: 1px solid rgba(140,170,255,.25);
@@ -255,6 +203,26 @@
     cursor: pointer;
     transition: background .2s ease;
 }
+
+/* Extra Safety: Bari screens par isko hide rakhne ke liye */
+@media (min-width: 1025px){
+    .nav-toggle{
+        display: none !important;
+    }
+}
+/* .nav-toggle{
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(140,170,255,.25);
+    color: #fff;
+    place-items: center;
+    cursor: pointer;
+    transition: background .2s ease;
+} */
+
 .nav-toggle:hover{ background: rgba(255,255,255,.15); }
 
 .nav-toggle svg line{
@@ -265,434 +233,866 @@
 .nav-toggle.is-active svg line:nth-child(2){ opacity: 0; }
 .nav-toggle.is-active svg line:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
 
-/* ---------- Light theme overrides ---------- */
-body[data-theme="light"] .site-topbar{
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+    :root {
+    --navy: #0b1a40;
+    --orange: #ffa500;
+    --cyan: #1fd1d6;
+    --white: #ffffff;
+    --bar-h: 2.35em;          /* bar height (≈45px at full size) */
+    --r: var(--bar-h);        /* curve radius */
+  }
+ 
+  * { box-sizing: border-box; }
+ 
+  
+ 
+  /* ---------- TOP BAR ---------- */
+  .topbar {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    height: var(--bar-h);
+    font-family: "Poppins", system-ui, sans-serif;
+    font-size: clamp(11px, 1.19vw, 19px);   /* whole bar scales with screen */
+    font-weight: 400;
+    color: var(--white);
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 50%, #4b4b4b 0%, #262626 45%, #0b0b0b 100%);
+  }
+ 
+  /* thin cyan line at the bottom */
+  .topbar::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--cyan);
+    z-index: 5;
+    pointer-events: none;
+  }
+ 
+  .seg {
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+    transition: opacity .2s ease;
+  }
+  .seg:hover { opacity: .85; }
+ 
+  a:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: -4px;
+    border-radius: 6px;
+  }
+ 
+  /* 1. Email (navy, left) */
+  .seg-mail {
+    background: var(--navy);
+    padding: 0 2.55em 0 2.6em;
+    border-bottom-right-radius: var(--r);
+    z-index: 4;
+  }
+ 
+  /* 2. WhatsApp Us (orange) – tucks under the navy curve */
+  .seg-wa {
+    background: var(--orange);
+    margin-left: calc(-1 * var(--r));
+    padding: 0 2.1em 0 3.3em;
+    border-bottom-right-radius: var(--r);
+    z-index: 3;
+  }
+ 
+  /* 3. Social icons (center) */
+  .center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: .95em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .socials a {
+    display: block;
+    line-height: 0;
+    transition: transform .2s ease;
+  }
+  .socials a:hover { transform: translateY(-2px); }
+  .socials svg { width: 1.05em; height: 1.05em; display: block; }
+ 
+  /* 4. FAQ (orange, right) */
+  .seg-faq {
+    background: var(--orange);
+    margin-right: calc(-1 * var(--r));
+    padding: 0 calc(var(--r) + 4.1em) 0 5.75em;
+    border-bottom-left-radius: var(--r);
+    z-index: 3;
+  }
+ 
+  /* 5. Get In Touch (navy, far right) – tucks over the FAQ curve */
+  .seg-touch {
+    background: var(--navy);
+    padding: 0 1.8em 0 5.5em;
+    border-bottom-left-radius: var(--r);
+    z-index: 4;
+  }
+ 
+  /* icons inside the segments */
+  .ico-logo { width: 1.3em; height: 1.3em; flex: none; }
+  .ico-wa   { width: 1.4em; height: 1.4em; flex: none; }
+ 
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .topbar { font-size: clamp(12px, 2.2vw, 16px); }
+    .socials, .seg-faq { display: none; }
+    .seg-touch { margin-left: auto; padding-left: 4em; }
+  }
+ 
+  @media (max-width: 560px) {
+    .topbar { font-size: 11px; }
+    .seg-wa { display: none; }
+    .seg-mail { padding: 0 2.2em 0 1.4em; }
+    .seg-touch { padding-left: 3.6em; padding-right: 1.2em; }
+  }
 
 
+
+/* =========================================================
+   LIGHT THEME — Header + Topbar (consolidated)
+   ========================================================= */
+
+/* Header */
 body[data-theme="light"] .site-header{
-    background: transparent;        /* light theme pe bhi transparent */
+    background: transparent;
     box-shadow: none;
 }
 
-body[data-theme="light"] .theme-toggle{
-    background: #eef1fa;
+
+/* =========================================================
+   LIGHT THEME — Topbar (new structure)
+   ========================================================= */
+body[data-theme="light"] .topbar{
+    background: #F0ECE4;                          /* page bg se match */
+}
+
+/* Cyan line — light theme mein thora darker */
+body[data-theme="light"] .topbar::after{
+    background: #14b8c4;
+}
+
+/* Email (navy) → cream with dark text */
+body[data-theme="light"] .seg-mail{
+    background: #ffffff;
+    color: #0b0f2b;
+    border: 1px solid rgba(11, 15, 43, 0.06);
+    border-top: none;
+    border-left: none;
+}
+body[data-theme="light"] .ico-logo circle:first-child{
+    fill: #f0ece4;                                 /* logo outer circle — cream */
+}
+body[data-theme="light"] .ico-logo circle:nth-child(3){
+    fill: #0b0f2b;                                 /* logo center — dark */
+}
+
+/* WhatsApp Us — orange rakho (CTA), contrast ke liye */
+body[data-theme="light"] .seg-wa{
+    background: #ffab1e;
+    color: #1a1200;
+}
+body[data-theme="light"] .seg-wa:hover{
+    opacity: 1;
+    background: #f59500;
+}
+
+/* Socials — colored icons same rahenge */
+body[data-theme="light"] .socials a:hover{
+    transform: translateY(-2px) scale(1.08);
+}
+
+/* FAQ — cream with dark text */
+body[data-theme="light"] .seg-faq{
+    background: #ffffff;
     color: #0b0f2b;
 }
-body[data-theme="light"] .theme-toggle:hover{
-    background: #e2e8f7;
+
+/* Get In Touch — dark navy (footer jaisa contrast) */
+body[data-theme="light"] .seg-touch{
+    background: #0b0f2b;
+    color: #ffffff;
+}
+body[data-theme="light"] .seg-touch:hover{
+    opacity: 1;
+    background: #1a1f3a;
 }
 
-/* ---------- Responsive ---------- */
-/* @media (max-width: 1024px){
-    .topbar__social{ display: none; }
-    .site-topbar{ padding: 10px 20px; }
-} */
-@media (max-width: 1024px){
-    /* Naya pill topbar mobile pe poori tarah hide */
-    .topbar{ display: none !important; }
-    .site-topbar{ display: none !important; }
-    .topbar__social{ display: none; }
-
-    /* Hamburger show karo — header.css mein override zaroori hai */
-    .nav-toggle{ display: grid !important; }
-}
-
-
-@media (max-width: 720px){
-    .site-topbar{
-        font-size: .75rem;
-        padding: 8px 16px;
-        gap: 8px;
-    }
-    .topbar__mail{ display: none; }
-    .topbar__faq{ padding: 6px 16px; font-size: .72rem; }
-    .topbar__contact{ padding: 6px 2px; font-size: .72rem; }
-    .topbar__whatsapp{ padding: 6px 14px; font-size: .72rem; }
-}
-
-
-
-
-
-/* TOP BAR CSS */
-
-/* ============================================================
-   TOP BAR — Pill-shaped, concave-curve style
-   ============================================================ */
-.topbar{
-    position: relative;
-    z-index: 60;
-    isolation: isolate;
-
-    --navy-900:#080b1f;
-    --topbar-navy:#0b1738;           /* ← lighter + blue tint — page se alag */
-    --topbar-orange:#F7A600;
-    --topbar-height:56px;
-
-    width:100%;
-    margin:0 auto;
-    height:var(--topbar-height);
-    background:var(--topbar-navy);
-    border-radius:999px;
-    display:flex;
-    align-items:stretch;
-    overflow:hidden;
-    border: 1px solid rgba(122, 162, 255, 0.18);   /* ← subtle blue border */
-    box-shadow:
-        0 10px 30px -12px rgba(0, 0, 0, 0.55),     /* outer depth shadow */
-        0 0 40px -12px rgba(77, 108, 250, 0.35),   /* blue glow (theme accent) */
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),   /* top highlight — premium feel */
-        inset 0 -2px 0 0 #22d3ee;
-    font-family:'Poppins',sans-serif;
-}
-
-.topbar .seg{
-    display:flex;
-    align-items:center;
-    white-space:nowrap;
-}
-.topbar .seg.navy{
-    color:#fff;
-    font-size:14px;
-    font-weight:600;
-    gap:10px;
-    padding:0 22px;
-    text-decoration:none;
-}
-.topbar .seg.navy.email{
-    padding-left:26px;
-    padding-right:40px;
-    border-radius:999px 0 0 999px;
-    position:relative;
-    z-index:2;
-}
-.topbar .seg.navy.email::after{
-    content:"";
-    position:absolute;
-    top:50%;
-    right:-28px;
-    width:56px;
-    height:56px;
-    background:var(--topbar-navy);
-    border-radius:50%;
-    transform:translateY(-50%);
-    z-index:2;
-}
-.topbar .seg.navy.contact{
-    padding-left:40px;
-    padding-right:26px;
-    border-radius:0 999px 999px 0;
-    position:relative;
-    z-index:2;
-}
-.topbar .seg.navy.contact::before{
-    content:"";
-    position:absolute;
-    top:50%;
-    left:-28px;
-    width:56px;
-    height:56px;
-    background:var(--topbar-navy);
-    border-radius:50%;
-    transform:translateY(-50%);
-    z-index:2;
-}
-.topbar .seg.orange.faq{
-    padding-right:60px;
-    border-radius:999px 0 0 999px;
-}
-.topbar .seg.orange{
-    background:var(--topbar-orange);
-    color:var(--topbar-navy);
-    border-radius:999px;
-    font-weight:700;
-    font-size:14px;
-    gap:10px;
-    padding:0 26px;
-    text-decoration:none;
-    position:relative;
-    z-index:1;
-}
-.topbar .seg.orange.whatsapp{
-    padding-left:60px;
-    border-radius:0 999px 999px 0;
-}
-.topbar .seg.icons{
-    flex:1;
-    justify-content:center;
-    gap:18px;
-    padding:0 24px;
-}
-.topbar .seg.icons a{
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    text-decoration:none;
-    font-size:15px;
-    transition:transform .15s ease, opacity .15s ease;
-}
-.topbar .seg.icons a:hover{ transform:translateY(-2px); opacity:.85; }
-.topbar .icon-linkedin{ background:#0A66C2; }
-.topbar .icon-whatsapp{ background:#25D366; }
-.topbar .icon-facebook{ background:#1877F2; }
-.topbar .icon-instagram{
-    background:radial-gradient(circle at 30% 110%,
-        #fdf497 0%, #fdf497 5%,
-        #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-.topbar .icon-youtube{ background:#FF0000; }
-
-.topbar .wa-badge{
-    width:22px;height:22px;border-radius:50%;
-    background:#fff;
-    display:flex;align-items:center;justify-content:center;
-    color:#25D366;font-size:12px;
-    flex:none;
-}
-.topbar .mail-badge{
-    width:20px;height:20px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:15px;flex:none;
-}
-
-@media (max-width: 900px){
-    .topbar .seg.navy.email span.label,
-    .topbar .seg.orange.faq span{ display:none; }
-    .topbar .seg.icons{ gap:12px; }
-}
-@media (max-width: 640px){
-    .topbar{ height:50px; }
-    .topbar .seg.orange,
-    .topbar .seg.navy{ padding:0 14px; font-size:12.5px; }
-    .topbar .seg.icons a{ width:26px; height:26px; font-size:13px; }
-}
-
-
-/* ============================================================
-   LIGHT THEME — Topbar overrides
-   ============================================================ */
-body[data-theme="light"] .topbar{
-    background: #ffffff;
-    box-shadow: 0 4px 14px rgba(11,30,66,.08);   /* halka shadow — dark line khatam */
-}
-
-/* Left curve (email ke baad wala circle) — topbar bg se match kare */
-html body[data-theme="light"] .topbar .seg.navy.email::after{
-    background: #ffffff !important;
-}
-/* body[data-theme="light"] .topbar .seg.navy.email::after{
-    background: #ffffff;
-} */
-
-/* Right curve (FAQ ke baad wala circle) — orange FAQ se match kare */
-body[data-theme="light"] .topbar .seg.navy.contact::before{
-    background: white;
-}
-
-/* Text readable ho light bg par */
-body[data-theme="light"] .topbar .seg.navy,
-body[data-theme="light"] .topbar .seg.navy.email,
-body[data-theme="light"] .topbar .seg.navy.contact{
-    color: #0B1E42;
-}
-
-/* Mail icon bhi dark ho jaye */
-body[data-theme="light"] .topbar .mail-badge{
-    color: #0B1E42;
-}
-
-body[data-theme="light"] .topbar{
-    background: #ffffff !important;
+/* Topbar base */
+/* body[data-theme="light"] .topbar{
+    background: #f0ece4 !important;
     border: 1px solid rgba(11, 15, 43, 0.08);
     box-shadow:
         0 10px 30px -12px rgba(11, 15, 43, 0.15),
         0 0 40px -12px rgba(255, 171, 30, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.6),
-        inset 0 -2px 0 0 #22d3ee;              /* ⬅️ cyan line */
+        inset 0 -2px 0 0 #22d3ee;
     position: relative;
     z-index: 60;
     isolation: isolate;
+} */
+
+/* Left curve — cream */
+/* html body[data-theme="light"] .topbar .seg.navy.email::after{
+    background: #f0ece4 !important;
+}
+/* Right curve — cream */
+/* body[data-theme="light"] .topbar .seg.navy.contact::before{
+    background: #f0ece4 !important;
+} 
+
+Topbar text */
+/* body[data-theme="light"] .topbar .seg.navy,
+body[data-theme="light"] .topbar .seg.navy.email,
+body[data-theme="light"] .topbar .seg.navy.contact{
+    color: #4a4a52;
+}
+body[data-theme="light"] .topbar .mail-badge{
+    color: #4a4a52;
+} */
+
+/* WhatsApp pill */
+/* body[data-theme="light"] .topbar .seg.orange,
+body[data-theme="light"] .topbar .seg.orange.whatsapp,
+body[data-theme="light"] .topbar .seg.orange.faq{
+    background: #f0ece4;
+    color: #4a4a52;
+}
+body[data-theme="light"] .topbar .seg.orange.whatsapp .wa-badge{
+    background: #25D366;
+    color: #ffffff;
+}
+body[data-theme="light"] .topbar .seg.orange:hover{
+    background: #e4dfd3;
+} */
+
+
+
+/* Main nav — muted cream */
+body[data-theme="light"] .main-nav{
+    background: #f0ece4;
+    border: 1px solid rgba(11, 15, 43, 0.06);
+    box-shadow: 0 4px 20px -8px rgba(11, 15, 43, 0.1);
+}
+body[data-theme="light"] .main-nav a{
+    color: #4a4a52;
+    font-weight: 600;
+    background: transparent;
+}
+body[data-theme="light"] .main-nav a.is-active{
+    background: #e4dfd3;
+    color: #1a1a1f;
+}
+body[data-theme="light"] .main-nav a:not(.is-active):hover{
+    background: rgba(11, 15, 43, 0.05);
+    color: #1a1a1f;
 }
 
+/* Search pill */
+body[data-theme="light"] .search-pill{
+    background: #f0ece4;
+    border: 1px solid rgba(11, 15, 43, 0.06);
+    box-shadow: 0 4px 20px -8px rgba(11, 15, 43, 0.1);
+}
+body[data-theme="light"] .search-pill input{ color: #4a4a52; }
+body[data-theme="light"] .search-pill input::placeholder{ color: #8b8b95; }
+body[data-theme="light"] .search-pill button{ color: #4a4a52; }
+
+/* Theme toggle */
+body[data-theme="light"] .theme-toggle{
+    background: #f0ece4;
+    color: #1a1a1f;
+}
+body[data-theme="light"] .theme-toggle:hover{
+    background: #e4dfd3;
+}
 
 /* =========================================================
-   HEADER — Mobile drawer (hamburger menu)
-   Yeh styling home.css se yahan move ki gayi hai taake
-   header self-contained rahe.
+   RESPONSIVE
    ========================================================= */
 @media (max-width: 1024px){
-  .nav-toggle{ display: grid !important; }
+    /* Topbar hidden on mobile */
+    .topbar{ display: none !important; }
 
-  .main-nav{
-    position: fixed;
-    top: 82px;
-    left: 16px;
-    right: 16px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    padding: 12px;
-    border-radius: 18px;
-    background: rgba(11,15,43,.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(120,150,255,.14);
-    box-shadow: 0 24px 60px -20px rgba(0,0,0,.85);
-    transform: translateY(-16px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: transform .3s cubic-bezier(.2,.7,.2,1),
-                opacity .25s ease,
-                visibility 0s linear .3s;
-    z-index: 60;
-  }
-  .main-nav.is-open{
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition-delay: 0s;
-  }
-  .main-nav a{
-    padding: 14px 18px;
-    border-radius: 12px;
-    color: #fff;
-    font-size: 1rem;
-    text-align: left;
-    font-weight: 600;
-  }
-  .main-nav a.is-active,
-  .main-nav a:hover{
-    background: rgba(77,108,250,.18);
-    color: #fff;
-  }
+    /* Show hamburger */
+    .nav-toggle{ display: grid !important; }
 
-  .search-pill{ display: none; }
+    /* Mobile drawer */
+    .main-nav{
+        position: fixed;
+        top: 82px;
+        left: 16px;
+        right: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(11,15,43,.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(120,150,255,.14);
+        box-shadow: 0 24px 60px -20px rgba(0,0,0,.85);
+        transform: translateY(-16px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform .3s cubic-bezier(.2,.7,.2,1),
+                    opacity .25s ease,
+                    visibility 0s linear .3s;
+        z-index: 60;
+    }
+    .main-nav.is-open{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+    }
+    .main-nav a{
+        padding: 14px 18px;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        text-align: left;
+        font-weight: 600;
+    }
+    .main-nav a.is-active,
+    .main-nav a:hover{
+        background: rgba(77,108,250,.18);
+        color: #fff;
+    }
+
+    .search-pill{ display: none; }
+
+    /* Light theme mobile drawer */
+    body[data-theme="light"] .main-nav{
+        background: rgba(255,255,255,.98);
+        border-color: rgba(11,15,43,.08);
+        box-shadow: 0 24px 60px -20px rgba(11,15,43,.18);
+    }
+    body[data-theme="light"] .main-nav a{ color: #1a1a1f; }
+    body[data-theme="light"] .main-nav a.is-active,
+    body[data-theme="light"] .main-nav a:hover{
+        background: rgba(77,108,250,.12);
+        color: #1a1a1f;
+    }
+
+    /* Mobile header — frosted glass */
+    .site-header{
+        background: rgba(8, 11, 31, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(122, 162, 255, 0.12);
+        padding: 12px 0;
+    }
+    body[data-theme="light"] .site-header{
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(11, 15, 43, 0.08);
+    }
+
+    /* Right aligned toggles */
+    .site-header__inner{ justify-content: space-between; }
+    .site-header__right{ margin-left: auto; gap: 10px; }
+
+    /* Rounded-square hamburger */
+    .nav-toggle{
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(140,170,255,.28);
+        color: #fff;
+        display: grid !important;
+        place-items: center;
+    }
+    .nav-toggle:hover{ background: rgba(255,255,255,.12); }
+    .nav-toggle svg{ width: 18px; height: 18px; }
+
+    body[data-theme="light"] .nav-toggle{
+        background: rgba(11,15,43,.05);
+        border-color: rgba(11,15,43,.15);
+        color: #0b0f2b;
+    }
+    body[data-theme="light"] .nav-toggle:hover{
+        background: rgba(11,15,43,.09);
+    }
 }
 
 @media (max-width: 720px){
-  .site-header{ padding: 12px 0; }
-  .main-nav{ top: 72px; }
+    .site-header{ padding: 12px 0; }
+    .main-nav{ top: 72px; }
 }
 
 @media (max-width: 560px){
-  .site-header__right{ gap: 8px; }
-  .theme-toggle,
-  .nav-toggle{ width: 40px; height: 40px; }
-  .main-nav{ top: 68px; left: 12px; right: 12px; }
+    .site-header__right{ gap: 8px; }
+    .theme-toggle,
+    .nav-toggle{ width: 40px; height: 40px; }
+    .main-nav{ top: 68px; left: 12px; right: 12px; }
+
+    .site-header{ background: rgba(8, 11, 31, 0.85); }
+    body[data-theme="light"] .site-header{ background: rgba(255, 255, 255, 0.85); }
 }
 
-/* Light theme mobile drawer */
-@media (max-width: 1024px){
-  body[data-theme="light"] .main-nav{
-    background: rgba(255,255,255,.98);
-    border-color: rgba(11,15,43,.08);
-    box-shadow: 0 24px 60px -20px rgba(11,15,43,.18);
-  }
-  body[data-theme="light"] .main-nav a{ color: var(--ink-100); }
-  body[data-theme="light"] .main-nav a.is-active,
-  body[data-theme="light"] .main-nav a:hover{
-    background: rgba(77,108,250,.12);
-    color: var(--ink-100);
-  }
-}
+
+
 
 
 /* =========================================================
-   MOBILE HEADER — Right aligned toggles + rounded-square hamburger
+   NAV GLOW — header.css ke bilkul END mein paste karein
+   Sirf: desktop (>=1025px) + dark theme.
+   Light theme, mobile drawer, topbar, baqi page — sab same rahenge.
    ========================================================= */
-@media (max-width: 1024px){
-  /* Right group ko right taraf push karo (logo left mein aayega) */
-  .site-header__inner{
+
+/* default: nayi cheezein hidden (mobile + light theme pe kuch nahi dikhega) */
+.site-header .nav-ico{ display: none; }
+.hdr-deco{ display: none; }
+
+@media (min-width: 1025px){
+
+  /* header ke upar glow topbar par na chadhe (neeche/side allowed) */
+  body:not([data-theme="light"]) .site-header{
+    clip-path: inset(0 -50vw -80px -50vw);
+  }
+
+  /* ---------- dark glass panel (header ki height same rehti hai) ---------- */
+  body:not([data-theme="light"]) .site-header .site-header__inner{
+    position: relative;
+    z-index: 1;
+    gap: 26px;
+  }
+  body:not([data-theme="light"]) .site-header .site-header__inner::before{
+    content: "";
+    position: absolute;
+    inset: -16px -22px;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(180deg, #0c2050 0%, #071433 60%, #050e26 100%);
+    clip-path: polygon(0 26%, 3.5% 0, 21% 0, 23.5% 6%, 76.5% 6%, 79% 0, 96.5% 0, 100% 28%, 100% 78%, 97% 100%, 80% 100%, 77.5% 90%, 22.5% 90%, 20% 100%, 3% 100%, 0 78%);
+  }
+
+  /* ---------- Search ---------- */
+  body:not([data-theme="light"]) .site-header .search-pill{
+    width: clamp(230px, 23vw, 340px);
+    height: 56px;
+    padding: 0 10px 0 22px;
+    border: 2px solid #ffc61a;
+    background: linear-gradient(115deg, #080d1c 0%, #0b0f1c 34%, rgba(255,165,0,.3) 48%, #150e04 60%, #1e1405 100%);
+    box-shadow: 0 0 5px #ffc61a, 0 0 18px rgba(255,170,0,.6), 0 0 36px rgba(255,130,0,.25), inset 0 0 16px rgba(255,160,0,.35);
+    transition: box-shadow .25s ease;
+  }
+  body:not([data-theme="light"]) .site-header .search-pill:hover,
+  body:not([data-theme="light"]) .site-header .search-pill:focus-within{
+    box-shadow: 0 0 7px #ffd23a, 0 0 26px rgba(255,170,0,.85), 0 0 50px rgba(255,130,0,.4), inset 0 0 20px rgba(255,160,0,.5);
+  }
+  body:not([data-theme="light"]) .site-header .search-pill input{
+    color: #ffc61a;
+    font-weight: 500;
+    font-size: 1.02rem;
+    text-shadow: 0 0 8px rgba(255,198,26,.55);
+  }
+  body:not([data-theme="light"]) .site-header .search-pill input::placeholder{
+    color: #ffc61a;
+    opacity: 1;
+  }
+  body:not([data-theme="light"]) .site-header .search-pill button{
+    color: #ffc61a;
+    filter: drop-shadow(0 0 5px rgba(255,198,26,.8));
+  }
+
+  /* ---------- Amber nav ---------- */
+  body:not([data-theme="light"]) .site-header .main-nav{
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 58px;
+    gap: 0;
     justify-content: space-between;
+    padding: 0 24px 0 6px;
+    border-radius: 999px 40px 40px 999px;
+    background: linear-gradient(180deg, #ffb02e 0%, #f7940a 40%, #e07a04 100%);
+    box-shadow:
+      0 0 8px rgba(255,170,30,.9),
+      0 0 22px rgba(255,150,0,.6),
+      0 0 44px rgba(255,120,0,.28),
+      inset 0 2px 3px rgba(255,235,170,.7),
+      inset 0 -3px 6px rgba(255,220,120,.55),
+      inset 0 0 26px rgba(255,190,60,.3);
   }
-  .site-header__right{
-    margin-left: auto;      /* ← yeh toggles ko right le aayega */
-    gap: 10px;
+  body:not([data-theme="light"]) .site-header .main-nav::before{ /* glossy sheen */
+    content: "";
+    position: absolute;
+    left: 12%; right: 3%; top: 4px; height: 36%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,.28), transparent);
+    pointer-events: none;
+  }
+  body:not([data-theme="light"]) .site-header .main-nav::after{ /* curl highlight right end */
+    content: "";
+    position: absolute;
+    right: 4px; bottom: 3px;
+    width: 40px; height: 20px;
+    border-radius: 0 0 36px 10px;
+    border-right: 3px solid rgba(255,245,210,.85);
+    border-bottom: 3px solid rgba(255,245,210,.85);
+    filter: blur(1px);
+    pointer-events: none;
   }
 
-  /* Hamburger — rounded square, reference jaisa */
-  .nav-toggle{
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;    /* ← circle nahi, rounded square */
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(140,170,255,.28);
+  body:not([data-theme="light"]) .site-header .main-nav a{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    background: transparent;
+    color: #1a1204;
+    font-weight: 600;
+    font-size: .98rem;
+    transition: transform .2s ease, text-shadow .2s ease;
+  }
+  body:not([data-theme="light"]) .site-header .main-nav a:not(.is-active):hover{
+    background: transparent;
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(255,245,200,.9);
+  }
+  body:not([data-theme="light"]) .site-header .main-nav a:focus-visible{
+    outline: 2px solid #1a1204;
+    outline-offset: 3px;
+  }
+  body:not([data-theme="light"]) .site-header .main-nav .nav-ico{
+    display: block;
+    width: 20px; height: 20px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* active = hexagon glass tab, glowing amber outline */
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active{
+    align-self: stretch;
+    margin: 0 -4px 0 0;
+    padding: 0 36px 0 32px;
+    background: transparent;
     color: #fff;
-    display: grid !important;
-    place-items: center;
-    transition: background .2s ease, border-color .2s ease;
+    filter: drop-shadow(0 0 3px #ffb02e) drop-shadow(0 0 10px rgba(255,150,0,.85)) drop-shadow(0 0 22px rgba(255,120,0,.45));
   }
-  .nav-toggle:hover{
-    background: rgba(255,255,255,.12);
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active::before,
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(13% 0, 87% 0, 100% 50%, 87% 100%, 13% 100%, 0 50%);
+  }
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active::before{
+    inset: 0;
+    background: linear-gradient(180deg, #ffd060, #ff9c10 50%, #ffc04a);
+  }
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active::after{
+    inset: 2.5px;
+    background:
+      linear-gradient(115deg, transparent 0 36%, rgba(255,255,255,.16) 36% 52%, transparent 52%),
+      linear-gradient(180deg, #2a3a63 0%, #101c40 55%, #0a1330 100%);
+  }
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active .nav-ico{
+    fill: #fff;
+    stroke: #fff;
   }
 
-  /* Hamburger ke andar ki lines — thori chhoti aur tight */
-  .nav-toggle svg{
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Theme toggle — circle rakho (same jaisa hai) */
-  .theme-toggle{
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+  /* ---------- Theme toggle (sirf glow border, size/behaviour same) ---------- */
+  body:not([data-theme="light"]) .site-header .theme-toggle,
+  body:not([data-theme="light"]) .site-header .theme-toggle:has(.premium-toggle-input:checked){
+    border-color: #f7940a;
+    box-shadow:
+      0 0 5px #ff9a1a,
+      0 0 16px rgba(255,150,0,.55),
+      0 0 32px rgba(255,120,0,.25),
+      inset 0 0 12px rgba(255,150,0,.3);
   }
 }
 
-/* Light theme mobile hamburger */
-@media (max-width: 1024px){
-  body[data-theme="light"] .nav-toggle{
-    background: rgba(11,15,43,.05);
-    border-color: rgba(11,15,43,.15);
-    color: #0b0f2b;
+/* nav icons chhoti desktop widths pe hide taake links fit rahen */
+@media (min-width: 1025px) and (max-width: 1180px){
+  body:not([data-theme="light"]) .site-header .main-nav .nav-ico{ display: none; }
+  body:not([data-theme="light"]) .site-header .main-nav a{ padding: 0 9px; font-size: .92rem; }
+  body:not([data-theme="light"]) .site-header .main-nav a.is-active{ padding: 0 24px; }
+}
+
+/* ---------- Background curves + glowing dots (sirf badi screens) ---------- */
+@media (min-width: 1400px){
+  body:not([data-theme="light"]) .site-header .hdr-deco{
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
-  body[data-theme="light"] .nav-toggle:hover{
-    background: rgba(11,15,43,.09);
+  .hdr-deco svg{
+    position: absolute;
+    top: 0;
+    width: 320px;
+    height: 90px;
+    overflow: visible;
   }
+  .hdr-deco__l{ left: 0; }
+  .hdr-deco__r{ right: 0; }
+  .hdr-deco path{ fill: none; stroke-width: 1.4; stroke-linecap: round; }
+  .hdr-dot{
+    fill: #ffb400;
+    filter: drop-shadow(0 0 6px #ff9d00) drop-shadow(0 0 12px #ff8a00);
+    animation: hdrPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes hdrPulse{ 50%{ opacity: .55; } }
+  .hdr-edge{
+    position: absolute;
+    bottom: -6px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, #e2700a 25%, #ff9a1a 60%, transparent);
+    box-shadow: 0 0 10px rgba(255,130,0,.8);
+  }
+  .hdr-edge--l{ left: 11%; width: 26%; }
+  .hdr-edge--r{ right: 8%; width: 20%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .hdr-dot{ animation: none; }
 }
 
 
 /* =========================================================
-   MOBILE HEADER — Frosted glass background
-   Transparent rehta hai lekin content ke upar prominent lagta hai
+   NAV GLOW — LIGHT THEME (LIGHTER ORANGE VERSION)
+   Sirf light theme + desktop (>=1025px).
+   Dark theme / mobile / topbar / baqi page — sab same.
+   Active hexagon = cream glass (as before).
    ========================================================= */
-@media (max-width: 1024px){
-  .site-header{
-    background: rgba(8, 11, 31, 0.72);      /* halka navy, semi-transparent */
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(122, 162, 255, 0.12);
-    padding: 12px 0;
+
+@media (min-width: 1025px){
+
+  body[data-theme="light"] .site-header{
+    clip-path: inset(0 -50vw -80px -50vw);
+  }
+
+  /* ---------- light glass panel ---------- */
+  body[data-theme="light"] .site-header .site-header__inner{
+    position: relative;
+    z-index: 1;
+    gap: 26px;
+  }
+  body[data-theme="light"] .site-header .site-header__inner::before,
+  body[data-theme="light"] .site-header .site-header__inner::after{
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    clip-path: polygon(0 26%, 3.5% 0, 21% 0, 23.5% 6%, 76.5% 6%, 79% 0, 96.5% 0, 100% 28%, 100% 78%, 97% 100%, 80% 100%, 77.5% 90%, 22.5% 90%, 20% 100%, 3% 100%, 0 78%);
+  }
+  body[data-theme="light"] .site-header .site-header__inner::before{ /* outline — soft orange */
+    inset: -17px -23px;
+    z-index: -2;
+    background: linear-gradient(180deg, rgba(255,184,74,.35), rgba(255,171,30,.18));
+  }
+  body[data-theme="light"] .site-header .site-header__inner::after{ /* fill — warm cream */
+    inset: -16px -22px;
+    z-index: -1;
+    background: linear-gradient(180deg, #ffffff 0%, #fffaf2 100%);
+  }
+
+  /* ---------- Search pill (soft light-orange) ---------- */
+  body[data-theme="light"] .site-header .search-pill{
+    width: clamp(230px, 23vw, 340px);
+    height: 56px;
+    padding: 0 10px 0 22px;
+    border: 2px solid #ffb84a;
+    background: linear-gradient(115deg, #ffffff 0%, #ffffff 40%, rgba(255,184,74,.16) 55%, #fff4e0 68%, #ffe9c4 100%);
+    box-shadow:
+      0 0 4px rgba(255,184,74,.7),
+      0 0 12px rgba(255,171,30,.32),
+      0 0 24px rgba(255,150,0,.12),
+      inset 0 0 10px rgba(255,184,74,.15);
+    transition: box-shadow .25s ease;
+  }
+  body[data-theme="light"] .site-header .search-pill:hover,
+  body[data-theme="light"] .site-header .search-pill:focus-within{
+    box-shadow:
+      0 0 6px rgba(255,184,74,.95),
+      0 0 18px rgba(255,171,30,.5),
+      0 0 34px rgba(255,150,0,.2),
+      inset 0 0 14px rgba(255,184,74,.24);
+  }
+  body[data-theme="light"] .site-header .search-pill input{
+    color: #1a1200;
+    font-weight: 600;
+    font-size: .98rem;
+  }
+  body[data-theme="light"] .site-header .search-pill input::placeholder{
+    color: #8a5a00;
+    opacity: 1;
+  }
+  body[data-theme="light"] .site-header .search-pill button{
+    color: #c47a00;
+    filter: drop-shadow(0 0 3px rgba(255,171,30,.35));
+  }
+
+  /* ---------- Amber nav (LIGHTER orange gradient) ---------- */
+  body[data-theme="light"] .site-header .main-nav{
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 58px;
+    gap: 0;
+    justify-content: space-between;
+    padding: 0 24px 0 6px;
+    border: 0;
+    border-radius: 999px 40px 40px 999px;
+    background: linear-gradient(180deg, #ffd28a 0%, #ffbe5c 42%, #ffab1e 100%);
+    box-shadow:
+      0 0 6px rgba(255,184,74,.7),
+      0 0 16px rgba(255,171,30,.35),
+      0 0 30px rgba(255,150,0,.15),
+      inset 0 2px 3px rgba(255,250,225,.9),
+      inset 0 -3px 6px rgba(255,225,140,.55),
+      inset 0 0 22px rgba(255,200,90,.3);
+  }
+  body[data-theme="light"] .site-header .main-nav::before{ /* glossy sheen */
+    content: "";
+    position: absolute;
+    left: 12%; right: 3%; top: 4px; height: 36%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,.45), transparent);
+    pointer-events: none;
+  }
+  body[data-theme="light"] .site-header .main-nav::after{ /* curl highlight */
+    content: "";
+    position: absolute;
+    right: 4px; bottom: 3px;
+    width: 40px; height: 20px;
+    border-radius: 0 0 36px 10px;
+    border-right: 3px solid rgba(255,255,250,.95);
+    border-bottom: 3px solid rgba(255,255,250,.95);
+    filter: blur(1px);
+    pointer-events: none;
+  }
+
+  body[data-theme="light"] .site-header .main-nav a{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    background: transparent;
+    color: #1a1200;
+    font-weight: 700;
+    font-size: .96rem;
+    transition: transform .2s ease, text-shadow .2s ease;
+  }
+  body[data-theme="light"] .site-header .main-nav a:not(.is-active):hover{
+    background: transparent;
+    color: #1a1200;
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(255,252,225,.95);
+  }
+  body[data-theme="light"] .site-header .main-nav a:focus-visible{
+    outline: 2px solid #1a1200;
+    outline-offset: 3px;
+  }
+  body[data-theme="light"] .site-header .main-nav .nav-ico{
+    display: block;
+    width: 20px; height: 20px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---------- Active tab: cream glass hexagon with soft amber glow ---------- */
+  body[data-theme="light"] .site-header .main-nav a.is-active{
+    align-self: stretch;
+    margin: 0 -4px 0 0;
+    padding: 0 36px 0 32px;
+    background: transparent;
+    color: #0b0f2b;
+    filter:
+      drop-shadow(0 0 3px #ffbe5c)
+      drop-shadow(0 0 8px rgba(255,171,30,.5))
+      drop-shadow(0 0 16px rgba(255,150,0,.22));
+  }
+  body[data-theme="light"] .site-header .main-nav a.is-active::before,
+  body[data-theme="light"] .site-header .main-nav a.is-active::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(13% 0, 87% 0, 100% 50%, 87% 100%, 13% 100%, 0 50%);
+  }
+  body[data-theme="light"] .site-header .main-nav a.is-active::before{ /* outer glow ring */
+    inset: 0;
+    background: linear-gradient(180deg, #ffdca0, #ffbe5c 50%, #ffd28a);
+  }
+  body[data-theme="light"] .site-header .main-nav a.is-active::after{ /* inner cream glass fill */
+    inset: 2.5px;
+    background:
+      linear-gradient(115deg, transparent 0 36%, rgba(255,255,255,.6) 36% 52%, transparent 52%),
+      linear-gradient(180deg, #f9f5ec 0%, #eee8d9 55%, #e4dfd3 100%);
+  }
+  body[data-theme="light"] .site-header .main-nav a.is-active .nav-ico{
+    fill: #0b0f2b;
+    stroke: #0b0f2b;
+  }
+
+  /* ---------- Theme toggle (soft orange border glow) ---------- */
+  body[data-theme="light"] .site-header .theme-toggle{
+    border-color: #ffb84a;
+    box-shadow:
+      0 0 4px rgba(255,184,74,.75),
+      0 0 10px rgba(255,171,30,.3),
+      0 0 20px rgba(255,150,0,.14),
+      inset 0 0 8px rgba(255,184,74,.2);
   }
 }
 
-/* Light theme mobile header */
-@media (max-width: 1024px){
-  body[data-theme="light"] .site-header{
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(11, 15, 43, 0.08);
-  }
+/* nav icons chhoti desktop widths pe hide taake links fit rahen */
+@media (min-width: 1025px) and (max-width: 1180px){
+  body[data-theme="light"] .site-header .main-nav .nav-ico{ display: none; }
+  body[data-theme="light"] .site-header .main-nav a{ padding: 0 9px; font-size: .9rem; }
+  body[data-theme="light"] .site-header .main-nav a.is-active{ padding: 0 24px; }
 }
 
-/* Chhoti screens pe thora aur solid (optional) */
-@media (max-width: 560px){
-  .site-header{
-    background: rgba(8, 11, 31, 0.85);
-  }
-  body[data-theme="light"] .site-header{
-    background: rgba(255, 255, 255, 0.85);
+/* curves + dots + edge lines (sirf badi screens) */
+@media (min-width: 1400px){
+  body[data-theme="light"] .site-header .hdr-deco{
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
 }

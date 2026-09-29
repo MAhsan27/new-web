@@ -11,6 +11,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+     {{-- ⬇️ YEH NAYA BLOCK — theme FOUC fix ⬇️ --}}
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('rr-theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    {{-- ⬆️ YEH NAYA BLOCK ⬆️ --}}
+
     {{-- ===================== SEO ===================== --}}
     <title>RR Technologies | Web Design, Development & Digital Marketing Agency</title>
     <meta name="description" content="RR Technologies is a web design, web development and digital marketing agency. We build fast, custom websites, e-commerce stores and SEO strategies that grow your traffic.">
@@ -41,6 +55,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
     {{-- 3D model viewer — sirf hero ke liye, lazy-loaded --}}
 <script type="module"
@@ -57,44 +72,14 @@
     }
     </script>
 </head>
-<body data-theme="dark">
+<!-- <body data-theme="dark"> -->
+    <body>
+<script>document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') || 'dark');</script>
 
 @include('layouts.header')
 
     {{-- ===================== Header ===================== --}}
-    <!-- <header class="site-header">
-    <div class="container">
-        <form class="search-pill" role="search" onsubmit="return false;">
-            <label for="site-search" class="sr-only" style="position:absolute;left:-9999px;">Search</label>
-            <input type="search" id="site-search" name="q" placeholder="Search">
-            <button type="submit" aria-label="Submit search">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </button>
-        </form>
-
-        <nav class="main-nav" id="primaryNav" aria-label="Primary">
-            <a href="#home" class="is-active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="{{ url('/contact') }}">Contact Us</a>
-        </nav>
-
-        <div class="site-header__right">
-            <button class="theme-toggle" aria-label="Toggle light / dark theme">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-            </button>
-
-            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
-        <line x1="4" y1="7" x2="20" y2="7"/>
-        <line x1="4" y1="12" x2="20" y2="12"/>
-        <line x1="4" y1="17" x2="20" y2="17"/>
-    </svg>
-</button>
-            
-        </div>
-    </div>
-</header> -->
+    
   
 
     <main>
@@ -153,19 +138,23 @@
             <div class="hero__visual">
 
                <div class="hero__globe-slot">
-    <model-viewer id="heroGlobe"
-                  src="{{ asset('models/globe.glb') }}"
-                  alt="Interactive 3D globe"
-                  camera-controls
-                  disable-zoom
-                  interaction-prompt="none"
-                  shadow-intensity="0"
-                  exposure="1"
-                  loading="eager"
-                  reveal="auto"
-                  draco-decoder-location="https://www.gstatic.com/draco/versioned/decoders/1.5.6/"
-                  style="width:100%;height:100%;">
-    </model-viewer>
+
+               <model-viewer id="heroGlobe"
+              src="{{ asset('models/globe.glb') }}"
+              data-dark-src="{{ asset('models/globe.glb') }}"
+              data-light-src="{{ asset('models/globe-white.glb') }}"
+              alt="Interactive 3D globe"
+              camera-controls
+              disable-zoom
+              interaction-prompt="none"
+              shadow-intensity="0"
+              exposure="1"
+              loading="eager"
+              reveal="auto"
+              draco-decoder-location="https://www.gstatic.com/draco/versioned/decoders/1.5.6/"
+              style="width:100%;height:100%;">
+</model-viewer>
+    
 </div>
 
 {{-- SVG orbit rings — globe ke around wrap-around effect --}}
@@ -271,48 +260,129 @@
             </div>
         </section>
 
-        {{-- ===================== Services ===================== --}}
-        <section class="section section--black" id="services">
-            <div class="container">
-                <div class="services__grid">
-                    <div class="services__heading">
-                        <span class="eyebrow">Services We Offer</span>
-                        <h2>We Believe In True Partnership And Thus Get Our <b>Customers</b> A Bang For Their Bucks. There Are Various Areas In Which We Function, Here Are A Few Of Them:</h2>
-                    </div>
+       
+        {{-- ===================== Services (Circular Cards v2) ===================== --}}
+<section class="section section--black services-new" id="services">
+    <div class="container">
 
-                    <div class="services__cards">
-                        <article class="service-card service-card--dark">
-                            <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h13l3 4v9H4z"/><path d="M4 7l3-4h10"/></svg>
-                            <h3>Web Design &amp; Web Development</h3>
-                            <a href="#contact" class="service-card__link" aria-label="Learn more about Web Design and Web Development">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
-                            </a>
-                        </article>
-                        <article class="service-card service-card--light">
-                            <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/><path d="M2 2h3l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 6H6"/></svg>
-                            <h3>E-Commerce Solutions</h3>
-                            <a href="#contact" class="service-card__link" aria-label="Learn more about E-Commerce Solutions">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
-                            </a>
-                        </article>
-                        <article class="service-card service-card--light">
-                            <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-                            <h3>Customized Application Development</h3>
-                            <a href="#contact" class="service-card__link" aria-label="Learn more about Customized Application Development">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
-                            </a>
-                        </article>
-                        <article class="service-card service-card--light">
-                            <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                            <h3>Search Engine Optimization &amp; Digital Marketing</h3>
-                            <a href="#contact" class="service-card__link" aria-label="Learn more about SEO and Digital Marketing">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
-                            </a>
-                        </article>
+        <div class="services-new__heading">
+            <span class="eyebrow">Services We Offer</span>
+            <h2>We Believe In True Partnership And Thus Get Our <b>Customers</b> A Bang For Their Bucks. There Are Various Areas In Which We Function, Here Are A Few Of Them:</h2>
+        </div>
+
+        <div class="services-new__grid">
+
+            {{-- Card 1 — Blue --}}
+            <div class="svc-circle-card svc-circle-card--blue">
+                <div class="svc-circle-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 7h13l3 4v9H4z"/><path d="M4 7l3-4h10"/>
+                    </svg>
+                </div>
+                <div class="svc-circle-card__body">
+                    <div class="svc-circle-card__curve"></div>
+                    <div class="svc-circle-card__content">
+                        <h3>Web Design &amp; Web Development</h3>
+                        <p>Custom, responsive websites built for speed, clarity and conversion.</p>
                     </div>
                 </div>
+
+                <a class="svc-circle-card__arrow" href="{{ url('/services') }}" aria-label="Explore this service">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+    </svg>
+</a>
+               
             </div>
-        </section>
+
+            {{-- Card 2 — White --}}
+            <div class="svc-circle-card svc-circle-card--white">
+                <div class="svc-circle-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/>
+                        <path d="M2 2h3l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 6H6"/>
+                    </svg>
+                </div>
+                <div class="svc-circle-card__body">
+                    <div class="svc-circle-card__curve"></div>
+                    <div class="svc-circle-card__content">
+                        <h3>E-Commerce Solutions</h3>
+                        <p>Scalable online stores with secure payments and live inventory sync.</p>
+                    </div>
+                </div>
+
+
+
+                <a class="svc-circle-card__arrow" href="{{ url('/services') }}" aria-label="Explore this service">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+    </svg>
+</a>
+             
+            </div>
+
+            {{-- Card 3 — Blue --}}
+            <div class="svc-circle-card svc-circle-card--blue">
+                <div class="svc-circle-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                    </svg>
+                </div>
+                <div class="svc-circle-card__body">
+                    <div class="svc-circle-card__curve"></div>
+                    <div class="svc-circle-card__content">
+                        <h3>Application Development</h3>
+                        <p>Tailored software solutions engineered around your unique workflows.</p>
+                    </div>
+                </div>
+
+
+                <a class="svc-circle-card__arrow" href="{{ url('/services') }}" aria-label="Explore this service">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+    </svg>
+</a>
+                
+            </div>
+
+            {{-- Card 4 — White --}}
+            <div class="svc-circle-card svc-circle-card--white">
+                <div class="svc-circle-card__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <div class="svc-circle-card__body">
+                    <div class="svc-circle-card__curve"></div>
+                    <div class="svc-circle-card__content">
+                        <h3>Search Engine Optimization &amp; Digital Marketing</h3>
+                        <p>Data-driven strategies that grow traffic, leads and revenue.</p>
+                    </div>
+                </div>
+
+
+
+                <a class="svc-circle-card__arrow" href="{{ url('/services') }}" aria-label="Explore this service">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+    </svg>
+</a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        
 
         {{-- ===================== Why Choose Us #2 — capability cards ===================== --}}
         <section class="section why2">
@@ -332,7 +402,7 @@
     <path d="M9.2 12.8 7.5 21l4.5-2.3 4.5 2.3-1.7-8.2"/>
     <path d="M9.7 8 11 9.3 14.3 6"/>
 </svg>
-            <!-- <svg class="capability-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18a3 3 0 0 0 3 3 3 3 0 0 0 3-3M8 10a4 4 0 1 1 8 0c0 2-1.5 2.5-1.5 5h-5c0-2.5-1.5-3-1.5-5Z"/><path d="M12 2v2M4 10H2m20 0h-2"/></svg> -->
+
         </span>
         <div class="capability-card__body">
             <h3>Experience</h3>
@@ -347,7 +417,7 @@
     <path d="M16.5 5.2a3.2 3.2 0 0 1 0 6.2"/>
     <path d="M17.5 14.3a4.8 4.8 0 0 1 3.5 4.6V20"/>
 </svg>
-            <!-- <svg class="capability-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.4"/><circle cx="19" cy="9" r="2.4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2M1 21v-1a3 3 0 0 1 3-3m16 4v-1a3 3 0 0 0-3-3"/></svg> -->
+
         </span>
         <div class="capability-card__body">
             <h3>Dedicated Team</h3>
@@ -363,7 +433,7 @@
     <path d="M12 10v4l3 2"/>
     <path d="m18.5 6.5 1.4-1.4"/>
 </svg>
-            <!-- <svg class="capability-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> -->
+
         </span>
         <div class="capability-card__body">
             <h3>Rapid Turnaround Time</h3>
@@ -376,7 +446,7 @@
     <path d="M12.6 3.4 20 10.8a2 2 0 0 1 0 2.8l-6.4 6.4a2 2 0 0 1-2.8 0L3.4 12.6V4a.6.6 0 0 1 .6-.6h8.6Z"/>
     <circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/>
 </svg>
-            <!-- <svg class="capability-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6l-9-4Z"/><path d="M9 12l2 2 4-4"/></svg> -->
+
         </span>
         <div class="capability-card__body">
             <h3>Competitive Pricing</h3>
@@ -389,39 +459,227 @@
         </section>
 
         {{-- ===================== Portfolio ===================== --}}
-        <section class="section portfolio">
-            <div class="container">
-                <div class="portfolio__title">
-                    <h2>Our Portfolio</h2>
-                    <div class="rule"></div>
-                </div>
 
-                <div class="portfolio__layout">
-                    <div class="portfolio__tabs" role="tablist" aria-label="Portfolio categories">
-                        <button type="button" class="is-active" data-target="ecommerce">
-                            Ecommerce Websites
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                        </button>
-                        <button type="button" data-target="wordpress">Wordpress Websites</button>
-                        <button type="button" data-target="logos">Logos Design</button>
-                        <button type="button" data-target="graphics">Graphices Design</button>
-                    </div>
+<section class="section portfolio" id="portfolio">
+    <div class="container">
 
-                    <div class="portfolio__grid">
-                        <img data-category="ecommerce" src="{{ asset('images/portfolio-1.avif') }}" alt="Audio brand e-commerce website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="ecommerce" src="{{ asset('images/portfolio-2.avif') }}" alt="Fragrance store e-commerce website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="ecommerce" src="{{ asset('images/portfolio-3.avif') }}" alt="Fashion brand e-commerce website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="ecommerce" src="{{ asset('images/portfolio-4.webp') }}" alt="Apparel store e-commerce website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="wordpress" src="{{ asset('images/portfolio-5.avif') }}" alt="Organic lifestyle WordPress website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="wordpress" src="{{ asset('images/portfolio-6.avif') }}" alt="Seasonal sale WordPress website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="logos" src="{{ asset('images/portfolio-7.avif') }}" alt="Wedding brand website design" width="340" height="255" loading="lazy" decoding="async">
-                        <img data-category="graphics" src="{{ asset('images/portfolio-8.webp') }}" alt="Food brand website design" width="340" height="255" loading="lazy" decoding="async">
+        <div class="portfolio-bento__head">
+            <div class="portfolio-bento__head-left">
+                <div class="portfolio-bento__eyebrow">Our Portfolio</div>
+                <h2>Work That's Moved The <span>Needle</span></h2>
+                <p>A selection of platforms, apps and brands we've engineered end-to-end — from first wireframe to production launch.</p>
+            </div>
+            <div class="portfolio-bento__count">Selected Work — <b>06</b> Projects</div>
+        </div>
+
+
+        {{-- Portfolio filter tabs --}}
+<div class="portfolio-filter" role="tablist" aria-label="Portfolio categories">
+    <button type="button" class="is-active" data-target="all">
+        All Work
+        <span class="portfolio-filter__count">06</span>
+    </button>
+    <button type="button" data-target="ecommerce">
+        Ecommerce
+        <span class="portfolio-filter__count">01</span>
+    </button>
+    <button type="button" data-target="wordpress">
+        WordPress
+        <span class="portfolio-filter__count">01</span>
+    </button>
+    <button type="button" data-target="logos">
+        Logos
+        <span class="portfolio-filter__count">01</span>
+    </button>
+    <button type="button" data-target="graphics">
+        Graphics
+        <span class="portfolio-filter__count">01</span>
+    </button>
+    <button type="button" data-target="custom">
+        Custom Apps
+        <span class="portfolio-filter__count">02</span>
+    </button>
+</div>
+
+        <div class="portfolio-bento">
+
+            {{-- 1: Featured — Custom E-Commerce --}}
+            <!-- <div class="pb-tile pb-tile--big"> -->
+                <div class="pb-tile pb-tile--big" data-category="ecommerce">
+                <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+                     <img src="{{ asset('images/ecommerce.jpg') }}"
+                 alt="Custom E-Commerce storefront project"
+                 loading="lazy"
+                 decoding="async">
+                        
                     </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 11.2A2 2 0 0116.5 20h-9a2 2 0 01-2-1.8L4 7z" stroke="#FF9F1C" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 7V5a4 4 0 018 0v2" stroke="#FF9F1C" stroke-width="1.6"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">Web Development</div>
+                        <h3>Custom E-Commerce</h3>
+                        <p>Warehouse-integrated storefront with live stock sync across three fulfilment centres.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2025</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="Custom E-Commerce case study"></a>
                 </div>
             </div>
-        </section>
 
-        {{-- ===================== Testimonial ===================== --}}
+            {{-- 2: Play Ground (Esports) — wide --}}
+            <!-- <div class="pb-tile pb-tile--wide"> -->
+                <div class="pb-tile pb-tile--wide" data-category="graphics">
+                <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+                     <img src="{{ asset('images/esports.jpg') }}"
+                 alt="Play Ground Esports branding"
+                 loading="lazy"
+                 decoding="async">
+                       
+                    </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M6 9h12l1.5 6a3 3 0 01-3 3.5H7.5A3 3 0 014.5 15L6 9z" stroke="#3D7BFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">Brand &amp; Experience</div>
+                        <h3>Play Ground (Esports)</h3>
+                        <p>Stage identity and broadcast graphics for a national esports championship series.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2025</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="Play Ground case study"></a>
+                </div>
+            </div>
+
+            {{-- 3: Native E-Donation App — tall --}}
+            <!-- <div class="pb-tile pb-tile--tall"> -->
+<div class="pb-tile pb-tile--tall" data-category="custom">
+            <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+                     <img src="{{ asset('images/donation-app.png') }}"
+                 alt="Native E-Donation mobile app screens"
+                 loading="lazy"
+                 decoding="async">
+                        
+                    </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.2C.5 8 2.4 4.5 6 4.5c2 0 3.4 1.1 4.2 2.2.8-1.1 2.2-2.2 4.2-2.2 3.6 0 5.5 3.5 4 7.3-2.5 4.6-10 9.2-10 9.2z" stroke="#FF9F1C" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">Mobile App</div>
+                        <h3>Native E-Donation App</h3>
+                        <p>Cross-platform giving app with instant checkout and campaign tracking.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2025</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="Native E-Donation App case study"></a>
+                </div>
+            </div>
+
+            {{-- 4: Vantra — small --}}
+            <!-- <div class="pb-tile pb-tile--small"> -->
+                <div class="pb-tile pb-tile--small" data-category="logos">
+                <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+
+                     <img src="{{ asset('images/portfolio-2.avif') }}"
+                 alt="Vantra brand logo design"
+                 loading="lazy"
+                 decoding="async">
+                       
+                    </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 6.2 6.6.5-5 4.3 1.6 6.4L12 16.9 6.4 20.4 8 14 3 9.7l6.6-.5L12 3z" stroke="#FF9F1C" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">Brand Identity</div>
+                        <h3>Vantra</h3>
+                        <p>A mark built to read as trustworthy at app-icon size.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2024</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="Vantra case study"></a>
+                </div>
+            </div>
+
+            {{-- 5: WordPress — small --}}
+            <!-- <div class="pb-tile pb-tile--small"> -->
+                <div class="pb-tile pb-tile--small" data-category="wordpress">
+                <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+
+                     <img src="{{ asset('images/portfolio-3.avif') }}"
+                 alt="Vantra brand logo design"
+                 loading="lazy"
+                 decoding="async">
+                        
+                    </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3D7BFF" stroke-width="1.6"/><path d="M8 9l4 8 4-8M9 9h6" stroke="#3D7BFF" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">WordPress</div>
+                        <h3>Northfield Realty</h3>
+                        <p>Listings site with CRM sync and sub-2s load times.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2024</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="Northfield Realty case study"></a>
+                </div>
+            </div>
+
+            {{-- 6: OpsFlow — wide --}}
+            <!-- <div class="pb-tile pb-tile--wide"> -->
+                <div class="pb-tile pb-tile--wide" data-category="custom">
+                <div class="pb-frame" data-tilt>
+                    <div class="pb-photo">
+
+
+                     <img src="{{ asset('images/portfolio-5.avif') }}"
+                 alt="Vantra brand logo design"
+                 loading="lazy"
+                 decoding="async">
+                      
+                    </div>
+                    <div class="pb-badge">
+                        <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="#3D7BFF" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="#3D7BFF" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="#3D7BFF" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="#3D7BFF" stroke-width="1.6"/></svg>
+                    </div>
+                    <div class="pb-dock">
+                        <div class="pb-cat">SaaS Dashboard</div>
+                        <h3>OpsFlow Operations Suite</h3>
+                        <p>Role-based dashboard replacing four spreadsheets with one live view.</p>
+                        <div class="pb-row">
+                            <span class="pb-view">Read More <span class="pb-arrow"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19L19 5M19 5H9M19 5V15" stroke="#080B1E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            <span class="pb-year">2024</span>
+                        </div>
+                    </div>
+                    <a class="pb-hitbox" href="#" aria-label="OpsFlow case study"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+       
+
+      
         {{-- ===================== Testimonial ===================== --}}
 <section class="section testimonial">
     <span class="testimonial__blob testimonial__blob--left" aria-hidden="true"></span>
@@ -500,38 +758,7 @@
 
     </div>
 </section>
-        <!-- <section class="section testimonial">
-            <span class="testimonial__blob testimonial__blob--left" aria-hidden="true"></span>
-            <span class="testimonial__blob testimonial__blob--right" aria-hidden="true"></span>
-            <div class="container">
-                <div class="portfolio__title">
-                    <h2>&ldquo;Testimonial&rdquo;</h2>
-                </div>
-
-                {{-- NOTE: exact client names/quotes were too small to read in the screenshot —
-                     placeholders below, swap in the real copy whenever you have it. --}}
-                <div class="testimonial__grid">
-                    <article class="testimonial-card">
-                        <div class="testimonial-card__head">
-                            <span class="testimonial-card__avatar">
-                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-                            </span>
-                            <h3>Ayesha Khan</h3>
-                        </div>
-                        <p>RR Technologies Rebuilt Our Website From Scratch And Our Organic Traffic Doubled Within Three Months. Communication Was Clear And Deadlines Were Always Met.</p>
-                    </article>
-                    <article class="testimonial-card">
-                        <div class="testimonial-card__head">
-                            <span class="testimonial-card__avatar">
-                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-                            </span>
-                            <h3>Bilal Ahmed</h3>
-                        </div>
-                        <p>The Team Handled Our E-Commerce Migration Smoothly With Zero Downtime. Their Attention To Detail And Post-Launch Support Have Been Excellent.</p>
-                    </article>
-                </div>
-            </div>
-        </section> -->
+       
 
         {{-- ===================== Contact ===================== --}}
        
@@ -606,90 +833,15 @@
         </div>
     </div>
 </section>
-        <!-- <section class="section contact" id="contact">
-            <div class="container">
-                <div class="contact__layout">
 
-                
-                    <div class="contact__art">
-                        <img src="{{ asset('images/contact-illustration.png') }}" alt="Illustration of a form and a verified user profile" width="500" height="330" loading="lazy" decoding="async">
-                    </div>
-
-                    <div class="contact__panel">
-                        <h3>Register Interest</h3>
-                        <p>Use The Form Below To Contact Us. Please Be As Detailed And Precise As Possible. Include Your Industry And Any Specific Requests. To Help Us Get To Know And Serve You Better, We Thank You For First Giving Us A Good Description Of Who You Are. You Can Also Send An Email, Call Us Or Send Us A WhatsApp To Make An Appointment.</p>
-
-                        <form id="contact-form">
-                            <div class="field">
-                                <label for="name">Name <em>*</em></label>
-                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                            </div>
-                            <div class="field">
-                                <label for="company">Company</label>
-                                <input type="text" id="company" name="company" placeholder="Enter your company name">
-                            </div>
-                            <div class="field">
-                                <label for="email">Email address <em>*</em></label>
-                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                            </div>
-                            <div class="field">
-                                <label for="message">Message <em>*</em></label>
-                                <textarea id="message" name="message" placeholder="Your message here" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn--primary">Submit</button>
-                        </form>
-                    </div>
-
-
-                </div>
-            </div>
-        </section> -->
+       
 
 
 
     </main>
 
     {{-- ===================== Footer ===================== --}}
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__top">
-                <div class="site-footer__brand">
-                    <h4>RR Technologies</h4>
-                    <p>We build fast, custom websites and digital marketing strategies that help small and large businesses grow online.</p>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="{{ url('/contact') }}">Contact Us</a></li>
-                        <!-- <li><a href="#contact">Contact Us</a></li> -->
-                    </ul>
-                </div>
-                <div>
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#services">Web Design &amp; Development</a></li>
-                        <li><a href="#services">E-Commerce Solutions</a></li>
-                        <li><a href="#services">Application Development</a></li>
-                        <li><a href="#services">SEO &amp; Digital Marketing</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Get In Touch</h4>
-                    <ul>
-                        <li><a href="mailto:hello@rrtechnologies.com">hello@rrtechnologies.com</a></li>
-                        <li><a href="tel:+10000000000">+1 000 000 0000</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="site-footer__bottom">
-                <span>&copy; {{ date('Y') }} RR Technologies. All rights reserved.</span>
-                <span>Built with care by RR Technologies.</span>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
 
     {{-- Script loaded with defer so it never blocks rendering --}}
     <script src="{{ asset('js/home.js') }}" defer></script>

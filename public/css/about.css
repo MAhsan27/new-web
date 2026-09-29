@@ -38,7 +38,7 @@ img { max-width: 100%; display: block; height: auto; }
 /* =========================================================
    HEADER
    ========================================================= */
-.site-header {
+/* .site-header {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
@@ -120,7 +120,7 @@ img { max-width: 100%; display: block; height: auto; }
     transition: color .2s ease;
 }
 
-.header-search button:hover { color: var(--color-navy); }
+.header-search button:hover { color: var(--color-navy); } */
 
 /* =========================================================
    HERO SECTION
@@ -1478,7 +1478,7 @@ background: linear-gradient(135deg, #0E114A 0%, #071F9A 50%, #0146EF 100%);     
    ██████  VERY SMALL MOBILE (max-width: 360px)
 ========================================================= */
 @media (max-width: 360px) {
-    .header-nav a { padding: 5px 8px; font-size: 10px; }
+   
     .about-hero-card h1 { font-size: 28px; text-align: left; }
     .about-hero-card p { font-size: 12.5px; text-align: left; }
     .section-title { font-size: 18px; }
@@ -1699,4 +1699,394 @@ background: linear-gradient(135deg, #0E114A 0%, #071F9A 50%, #0146EF 100%);     
     .doodle-arrow { display: none; }
     .sparkle-1 { font-size: 14px; top: -12px; left: -15px; }
     .sparkle-2 { font-size: 10px; bottom: -18px; left: -22px; }
+}
+
+
+
+/* =========================================================
+   FIX — Topbar + Header dono fixed, hero unke peeche
+   Sirf about page pe (jahan .about-hero ho).
+   Home page pe .hero hai, isliye koi effect nahi.
+   ========================================================= */
+
+body:has(.about-hero) .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+body:has(.about-hero) .site-header {
+  position: fixed;
+  top: calc(2.35 * clamp(11px, 1.19vw, 19px));
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+@media (max-width: 900px) {
+  body:has(.about-hero) .site-header {
+    top: 0;
+  }
+}
+
+
+
+
+
+/* About hero — same box as .cp-hero-inner */
+.about-hero {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 515px;
+    border-radius: 0;
+}
+
+@media (max-width: 768px) {
+    .about-hero { height: 380px; }
+}
+
+@media (max-width: 480px) {
+    .about-hero { height: 320px; }
+}
+
+
+
+
+
+/* =========================================================
+   LIGHT THEME — About page
+   Same palette as contact/portfolio:
+   bg #f4f6fb | card #ffffff | text #0b0f2b | muted #6b7094
+   blue #4d6cfa | orange #ffab1e
+   ========================================================= */
+
+/* ---------- Hero slider overlay — fade to light ---------- */
+body[data-theme="light"] .about-hero::after{
+  background: linear-gradient(
+    to bottom,
+    rgba(244,246,251,0.15) 0%,
+    rgba(244,246,251,0)    40%,
+    rgba(244,246,251,0.95) 100%
+  );
+}
+
+/* Hero card — already white, just soften shadow */
+body[data-theme="light"] .about-hero-card{
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 20px 40px rgba(11,15,43,0.18);
+}
+body[data-theme="light"] .about-hero-card:hover{
+  box-shadow: 0 0 60px rgba(77,108,250,0.35);
+}
+body[data-theme="light"] .about-hero-card h1{ color: var(--color-orange); }
+body[data-theme="light"] .about-hero-card p{ color: #334155; }
+
+/* ---------- Mission section ---------- */
+body[data-theme="light"] .about-mission{ background: #f4f6fb; }
+body[data-theme="light"] .mission-text p{ color: #4a4f74; }
+
+/* ---------- Image border wrap (animated gradient) ---------- */
+body[data-theme="light"] .image-border-wrap{
+  background: rgba(77,108,250,0.12);
+}
+body[data-theme="light"] .image-border-wrap::after{
+  background: #f4f6fb;
+}
+body[data-theme="light"] .image-border-wrap img{
+  box-shadow: 0 20px 40px rgba(11,15,43,0.20);
+}
+
+/* ---------- Features section ---------- */
+body[data-theme="light"] .features-section{ background: #eef1fa; }
+
+/* ---------- Core tenets section ---------- */
+body[data-theme="light"] .core-tenets-section{
+  background: radial-gradient(ellipse at top, #dde4ff 0%, #f4f6fb 60%);
+}
+body[data-theme="light"] .core-tenets-section::before{
+  background: radial-gradient(ellipse, rgba(77,108,250,0.06) 0%, transparent 70%);
+}
+body[data-theme="light"] .aurora-blob{ opacity: 0.28; }
+body[data-theme="light"] .blob-3{ opacity: 0.08; }
+
+/* ---------- Marquee strip ---------- */
+body[data-theme="light"] .marquee-strip{
+  background: linear-gradient(90deg, transparent, rgba(77,108,250,0.06), transparent);
+  border-top-color: rgba(11,15,43,0.08);
+  border-bottom-color: rgba(11,15,43,0.08);
+}
+body[data-theme="light"] .marquee-track span{ color: rgba(11,15,43,0.65); }
+body[data-theme="light"] .marquee-track .dot{
+  color: #4d6cfa;
+  text-shadow: 0 0 15px #4d6cfa, 0 0 30px #7aa2ff;
+}
+
+/* ---------- Section badge / title / subtitle ---------- */
+body[data-theme="light"] .section-badge{
+  background: rgba(77,108,250,0.08);
+  border-color: rgba(77,108,250,0.35);
+  color: #2540c9;
+}
+body[data-theme="light"] .section-title{
+  color: #0b0f2b;
+  text-shadow: none;
+}
+body[data-theme="light"] .section-subtitle{
+  color: #4a4f74;
+  opacity: 1;
+}
+
+/* ---------- Tenet cards (soft white in dark → crisper white in light) ---------- */
+body[data-theme="light"] .tenet-card{
+  background: linear-gradient(145deg, #ffffff 0%, #eef1fa 100%);
+  border-color: rgba(11,15,43,0.08);
+  box-shadow:
+    0 15px 40px rgba(11,15,43,0.12),
+    0 0 0 1px rgba(11,15,43,0.05);
+}
+/* Hover keeps the dramatic dark look — same as contact/portfolio CTA */
+body[data-theme="light"] .tenet-card:hover{
+  background: #0B1120;
+  border: 2px solid #ffffff;
+  box-shadow:
+    0 40px 80px rgba(11,15,43,0.35),
+    0 0 60px rgba(77,108,250,0.45),
+    0 0 100px rgba(77,108,250,0.20),
+    inset 0 0 40px rgba(77,108,250,0.08);
+}
+body[data-theme="light"] .card-number{ color: rgba(11,15,43,0.18); }
+body[data-theme="light"] .tenet-card:hover .card-number{ color: rgba(255,255,255,0.15); }
+body[data-theme="light"] .card-icon-wrapper::after{
+  border-color: rgba(11,15,43,0.35);
+}
+body[data-theme="light"] .tenet-card:hover .card-icon-wrapper::after{
+  border-color: rgba(255,255,255,0.7);
+}
+
+/* ---------- CTA banner (keep blue gradient identity) ---------- */
+body[data-theme="light"] .cta-banner{
+  background: linear-gradient(135deg, #7aa2ff 0%, #4d6cfa 50%, #2540c9 100%);
+}
+body[data-theme="light"] .cta-content h2{ color: #ffffff; }
+body[data-theme="light"] .cta-content p{ color: rgba(255,255,255,0.9); }
+body[data-theme="light"] .cta-content .get-quote-btn{
+  background: #ffffff;
+  color: #0b0f2b;
+}
+body[data-theme="light"] .cta-content .get-quote-btn:hover{
+  background: #0b0f2b;
+  color: #ffffff;
+}
+
+/* ---------- Awards section ---------- */
+body[data-theme="light"] .awards-section{ background: #f4f6fb; }
+body[data-theme="light"] .awards-section::before{
+  background:
+    radial-gradient(circle at 50% 0%, rgba(77,108,250,0.10) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(255,171,30,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(122,162,255,0.06) 0%, transparent 40%);
+}
+body[data-theme="light"] .awards-section h2{ color: #0b0f2b; }
+body[data-theme="light"] .awards-subtitle{ color: #4a4f74; }
+
+/* Fade edges ko light bg se match karo */
+body[data-theme="light"] .slider-fade-left{
+  background: linear-gradient(to right, #f4f6fb 0%, rgba(244,246,251,0) 100%);
+}
+body[data-theme="light"] .slider-fade-right{
+  background: linear-gradient(to left, #f4f6fb 0%, rgba(244,246,251,0) 100%);
+}
+
+body[data-theme="light"] .award-item h3{ color: #4a4f74; }
+body[data-theme="light"] .award-item:hover h3{ color: #4d6cfa; }
+body[data-theme="light"] .award-circle{
+  box-shadow:
+    0 10px 30px rgba(11,15,43,0.15),
+    inset 0 0 0 2px rgba(77,108,250,0.20);
+}
+
+/* ---------- Vision section ---------- */
+body[data-theme="light"] .vision-section{ background: #f4f6fb; }
+body[data-theme="light"] .vision-text .section-title{ color: #0b0f2b; }
+body[data-theme="light"] .vision-text p{ color: #4a4f74; }
+body[data-theme="light"] .vision-media img{
+  box-shadow: 0 20px 40px rgba(11,15,43,0.18);
+  border-color: rgba(11,15,43,0.06);
+}
+body[data-theme="light"] .vision-text .get-quote-btn{
+  background: #4d6cfa;
+  color: #ffffff;
+}
+body[data-theme="light"] .vision-text .get-quote-btn:hover{
+  background: #0b0f2b;
+  color: #ffffff;
+  border: 2px solid #4d6cfa;
+}
+
+/* ---------- About page corner doodle ---------- */
+body[data-theme="light"] .about-hero .corner-doodle .doodle-note,
+body[data-theme="light"] .corner-doodle .doodle-note{
+  color: rgba(11,15,43,0.55);
+  text-shadow: none;
+}
+body[data-theme="light"] .about-hero .corner-doodle .doodle-title,
+body[data-theme="light"] .corner-doodle .doodle-title{
+  color: #0b0f2b;
+  text-shadow:
+    0 0 20px rgba(77,108,250,0.28),
+    0 2px 8px rgba(11,15,43,0.18);
+}
+body[data-theme="light"] .about-hero .corner-doodle .doodle-underline,
+body[data-theme="light"] .about-hero .corner-doodle .doodle-arrow,
+body[data-theme="light"] .corner-doodle .doodle-underline,
+body[data-theme="light"] .corner-doodle .doodle-arrow{ color: #4d6cfa; }
+
+/* ---------- Typewriter cursor ---------- */
+body[data-theme="light"] .about-hero-card h1 .typewriter-cursor{
+  color: var(--color-orange);
+}
+
+
+
+/* =========================================================
+   LIGHT THEME — Tenet card hover
+   Layered gradient (portfolio style):
+   radial blue highlight + linear blue base + orange corner hint
+   ========================================================= */
+
+body[data-theme="light"] .tenet-card:hover{
+  background:
+    radial-gradient(140% 120% at 15% 0%,
+      rgba(122,162,255,0.55) 0%, transparent 55%),
+    radial-gradient(120% 100% at 100% 100%,
+      rgba(255,171,30,0.22) 0%, transparent 55%),
+    linear-gradient(145deg, #4d6cfa 0%, #2540c9 50%, #0f1f8c 100%);
+  border: 2px solid rgba(255,255,255,0.95);
+  border-radius: 30px;
+  box-shadow:
+    0 40px 80px rgba(11,15,43,0.35),
+    0 0 60px rgba(77,108,250,0.55),
+    0 0 100px rgba(37,64,201,0.30),
+    inset 0 0 40px rgba(255,255,255,0.08);
+  animation-play-state: paused;
+  transform: translateY(-14px) scale(1.03);
+}
+
+/* Heading — white with soft halo */
+body[data-theme="light"] .tenet-card:hover h3{
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(255,255,255,0.55);
+}
+
+/* Body — readable soft white */
+body[data-theme="light"] .tenet-card:hover p{
+  color: rgba(255,255,255,0.92);
+}
+
+/* Number — glassy white */
+body[data-theme="light"] .tenet-card:hover .card-number{
+  color: rgba(255,255,255,0.22);
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Icon hexagon — cream with blue icon (accent pop) */
+body[data-theme="light"] .tenet-card:hover .card-icon{
+  background: #ffffff;
+  color: #4d6cfa;
+  transform: rotate(360deg) scale(1.15);
+  box-shadow:
+    0 0 50px rgba(255,255,255,0.95),
+    0 0 80px rgba(122,162,255,0.65),
+    0 15px 35px rgba(11,15,43,0.35);
+}
+
+/* Icon outer glow */
+body[data-theme="light"] .tenet-card:hover .card-icon-wrapper::before{
+  opacity: 1;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+  animation-duration: 1.2s;
+}
+
+body[data-theme="light"] .tenet-card:hover .card-icon-wrapper::after{
+  border-color: rgba(255,255,255,0.85);
+  animation-duration: 6s;
+}
+
+body[data-theme="light"] .tenet-card:hover .card-content{
+  transform: translateY(-6px);
+}
+
+/* Conic border sweep — white + orange accent */
+body[data-theme="light"] .tenet-card:hover::before{
+  opacity: 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 78%,
+    rgba(255,171,30,0.7) 86%,
+    rgba(255,255,255,0.95) 93%,
+    rgba(122,162,255,0.7) 98%,
+    transparent 100%
+  );
+}
+
+
+
+/* =========================================================
+   LIGHT THEME — About page: dark strips fix
+   Body + hero background ko light karo
+   ========================================================= */
+
+/* Body base background */
+body[data-theme="light"]{
+  background-color: #f4f6fb;
+  color: #0b0f2b;
+}
+
+/* Hero section — dark navy strip visible around card */
+body[data-theme="light"] .about-hero{
+  background: #f4f6fb;
+}
+
+/* Hero slider images ke neeche fallback */
+body[data-theme="light"] .hero-slide{
+  filter: brightness(0.85) saturate(1.05);
+}
+
+/* Mission section (agar abhi tak nahi kiya) */
+body[data-theme="light"] .about-mission{
+  background: #f4f6fb;
+}
+
+/* Features section */
+body[data-theme="light"] .features-section{
+  background: #eef1fa;
+}
+
+/* Vision section */
+body[data-theme="light"] .vision-section{
+  background: #f4f6fb;
+}
+
+/* Core tenets section */
+body[data-theme="light"] .core-tenets-section{
+  background: radial-gradient(ellipse at top, #dde4ff 0%, #f4f6fb 60%);
+}
+
+/* Awards section */
+body[data-theme="light"] .awards-section{
+  background: #f4f6fb;
+}
+
+/* General section dark override — any missed */
+body[data-theme="light"] section{
+  color: #0b0f2b;
 }

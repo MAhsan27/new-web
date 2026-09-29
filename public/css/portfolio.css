@@ -1,0 +1,504 @@
+:root{
+      --bg:#080b1f; /* Isko #071044 se badal kar #080b1f kar dein */
+    --navy:#0b1a5e;
+    /* --bg:#071044;
+    --navy:#0b1a5e; */
+    --gold:#f5a623;
+    --blue:#3a3ae8;
+    --text:#ffffff;
+    --muted:#aab4dc;
+
+     --orange:#ffab1e;
+    --orange-600:#f59500;
+    --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  /* *{box-sizing:border-box;margin:0;padding:0} */
+  /* html{scroll-behavior:smooth} */
+  /* html{overflow-x:hidden} */
+  body{background:var(--bg);
+    color:var(--text);
+    font-family:var(--font);
+    overflow-x:hidden;
+    /* -webkit-font-smoothing:antialiased */
+}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+  
+
+  /* ================= HERO ================= */
+
+   /* ---------- Hero ---------- */
+   .cp-hero {
+    max-width: 100%;              /* full width — 1200px limit hatai */
+    margin: 0;                    /* koi gap nahi upar se */
+    padding: 0;                   /* koi side padding nahi */
+    width: 100%;
+}
+
+.cp-hero-inner {
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+    height: 515px;
+    width: 100%;
+    background:
+        /* Neeche wala vignette halka rakha, top bilkul clear */
+        radial-gradient(ellipse 90% 70% at 50% 50%,
+            rgba(8, 11, 31, 0)    0%,
+            rgba(8, 11, 31, 0)    50%,
+            rgba(8, 11, 31, 0.25) 75%,
+            rgba(8, 11, 31, 0.75) 92%,
+            rgba(8, 11, 31, 1)    100%),
+         linear-gradient(180deg,
+            rgba(8, 11, 31, 0.15) 0%,     /* 0.6 → 0.15 (top halka) */
+            rgba(8, 11, 31, 0)    20%,    /* jaldi transparent */
+            rgba(8, 11, 31, 0)    55%,
+            rgba(8, 11, 31, 0.5)  75%,
+            rgba(8, 11, 31, 0.9)  90%,
+            rgba(8, 11, 31, 1)    100%),
+        url('/images/portfolio-hero-bg.png') center/cover no-repeat;
+}
+    
+
+
+   .cp-hero-text {
+    position: absolute;
+    left: 60px;        /* simple fixed value — koi formula nahi */
+    bottom: 90px;      /* thora neeche */
+     max-width: 720px;    /* barhao taake heading 1 line mein fit ho */
+}
+    
+
+    .cp-hero-text h1 {
+        font-size: clamp(2rem, 4.4vw, 3.5rem);
+        margin: 0 0 8px;
+        font-weight: 800;
+    }
+
+/* Sirf "Contact" word pe gradient */
+.cp-hero-text h1 .grad {
+    background: linear-gradient(95deg, #4d6cfa 0%, #7aa2ff 55%, #b3c6ff 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+}
+
+    .cp-hero-text p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+    }
+
+ 
+
+  /* ================= INTRO ================= */
+  .intro{padding:30px 90px 0}
+  .intro h2{font-size:48px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
+  .intro p{margin-top:22px;font-size:17px;line-height:1.9;max-width:1250px}
+
+  /* ================= SHOWCASE ================= */
+  /* .showcase{position:relative;margin-top:110px;padding:0 20px 320px;overflow:hidden} */
+    .showcase{
+    position:relative;
+    margin-top:110px;
+    padding:0 20px 320px;
+    overflow-x: clip;    /* Horizontal overflow (bands) ko rokega */
+    overflow-y: visible; /* Vertical stretch (cards) ko allow karega */
+  }
+
+     .grid{
+    position:relative;z-index:2;
+    max-width:1000px; /* Width kam kar di taake cards lambay ho jayein */
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px; /* Cards ke beech ka gap */
+  }
+  
+
+
+
+    /* v2 card variables — pehle :root{} ke andar bhi add karna, doosre vars ke sath */
+  :root{
+     --pf-panel:#0F1533;
+    --pf-panel-2:#1B2560;
+    /* --pf-panel:#080b1f;
+    --pf-panel-2:#3D7BFF; */
+    --pf-line:rgba(255,255,255,0.09);
+    --pf-blue:#0b1a5e;
+    --pf-orange:#FF9F1C;
+    --pf-text:#EEF0FA;
+    --pf-muted:#8890B5;
+    --pf-muted-2:#5C6491;
+  }
+
+
+
+
+
+  .card{
+    --clip: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+    position:relative;
+    height:100%;
+    clip-path:var(--clip);
+    background:linear-gradient(160deg, var(--pf-panel) 0%, var(--pf-panel-2) 100%);
+    padding:2px;
+    display:block;
+    cursor:pointer;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
+  }
+  .card::after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    clip-path:var(--clip);
+    background:conic-gradient(from 200deg, var(--pf-blue), transparent 30%, transparent 70%, var(--pf-orange));
+    z-index:-1;
+    opacity:.55;
+  }
+  .card:hover{
+    transform:translateY(-8px) scale(1.02);
+    filter:drop-shadow(0 22px 34px rgba(0,0,0,.45));
+  }
+
+  .card-inner{
+    clip-path:var(--clip);
+      background:
+      radial-gradient(120% 90% at 15% 0%, rgba(61,107,255,0.28), transparent 55%),
+      linear-gradient(165deg, var(--pf-panel) 0%, var(--pf-panel-2) 100%);
+    /* background:linear-gradient(160deg, var(--pf-panel) 0%, var(--pf-panel-2) 100%); */
+    display:flex;
+    flex-direction:column;
+    height:100%;
+  }
+
+  .media{position:relative;height:190px;overflow:hidden;flex-shrink:0;background:#fff;}
+  .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .media img.contain-img{object-fit:contain;padding:14px;}
+  .card:hover .media img{transform:scale(1.06);}
+  .media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 40%, rgba(8,11,30,.9) 100%);
+  }
+
+  .badge{
+    position:absolute; top:-20px; left:-20px;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--bg);
+    border:1px solid var(--pf-line);
+    display:flex; align-items:center; justify-content:center;
+    z-index:5;
+    box-shadow:0 0 0 4px var(--bg), 0 8px 18px rgba(0,0,0,.5);
+  }
+  .badge::before{
+    content:""; position:absolute; inset:-3px; border-radius:50%;
+    background:conic-gradient(var(--pf-blue), var(--orange), var(--pf-blue));
+    z-index:-1; opacity:.9;
+  }
+  .badge svg{width:22px;height:22px;}
+
+  .content{padding:32px 22px 22px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .content .cat{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--pf-orange);letter-spacing:.02em;}
+  .content h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:0;line-height:1.3;color:var(--pf-text);}
+
+  .foot{margin-top:12px;padding-top:14px;border-top:1px solid var(--pf-line);display:flex;align-items:center;justify-content:space-between;}
+  .view{display:inline-flex;align-items:center;gap:8px;color:var(--pf-text);text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;}
+  .view .arrow{width:24px;height:24px;border-radius:50%;background:var(--pf-blue) ;display:flex;align-items:center;justify-content:center;transition:transform .25s ease, background .25s ease;}
+  .card:hover .arrow{background:var(--pf-orange);transform:rotate(45deg);}
+  .arrow svg{width:11px;height:11px;}
+
+
+
+
+    @media (prefers-reduced-motion:reduce){
+    .card{transition:none; transform:rotate(0deg);}
+    .card:hover{transform:rotate(0deg);}
+    .card:hover .media img{transform:none;}
+    .card:hover .arrow{transform:none;}
+  }
+  
+
+  /* ================= DIAGONAL MARQUEE BANDS ================= */
+    .band{
+    position:absolute;z-index:1;height:75px;display:flex;align-items:center;overflow:hidden;
+    font-size:26px;font-weight:700;letter-spacing:1.5px;white-space:nowrap;
+    /* Naya transition add kiya taake hover smooth lage */
+    transition: box-shadow 0.4s ease, filter 0.4s ease, background 0.4s ease, color 0.4s ease;
+  }
+  .track{display:flex;width:max-content;animation:scroll 40s linear infinite}
+  .track span{
+    padding-right:85px;
+    transition: text-shadow 0.4s ease, color 0.4s ease; /* Text glow ke liye */
+  }
+
+  .band-a{left:-5%;width:110%;top:250px;transform:rotate(-2deg);background:rgba(28,44,120,.55);color:#9aa6d6}
+  .band-b{left:-5%;width:110%;top:480px;transform:rotate(6deg);background:#4a4af0;color:#fff}
+  .band-b .track{animation-direction:reverse} /* left to right */
+  .band-d{left:-5%;width:110%;bottom:120px;transform:rotate(-2deg);background:linear-gradient(90deg,#2f2fe0,#4b4bf2);color:#fff}
+
+     /* =========================================================
+     HOVER EFFECT (Exact Match with Capability Card)
+     ========================================================= */
+  
+  .band:hover {
+      background: linear-gradient(90deg, #2848e0 0%, #04081f 100%);
+      box-shadow: 
+          0 0 0 1px rgba(255,255,255,.15), 
+          0 0 40px 4px rgba(255,255,255,.12), 
+          0 20px 50px -15px rgba(7, 11, 26, 0.55);
+      transition: background .7s cubic-bezier(.16,.84,.24,1), box-shadow .7s cubic-bezier(.16,.84,.24,1);
+      color: #fff; /* Text ko white kiya taake dark gradient par readable rahe */
+  }
+
+  /* Text par bhi wahi smooth effect */
+  .band:hover .track span {
+      color: #ffffff;
+      text-shadow: none; /* Purana text glow hata diya taake bilkul clean capability card jaisa lage */
+  }
+
+ 
+ 
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  
+
+  /* ================= STATUS DOT ================= */
+  .dot{position:fixed;right:24px;bottom:24px;width:14px;height:14px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.25);z-index:30}
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:1100px){
+    .mainbar{gap:24px;flex-wrap:wrap}
+    .search{width:240px}
+    .hero,.intro{padding-left:40px;padding-right:40px}
+    .hero h1,.intro h2{font-size:38px}
+  }
+  @media (max-width:900px){
+    .header{padding:0 12px}
+    .socials,.pill-link.wa-text{display:none}
+    .nav{overflow-x:auto;max-width:100%}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .hero{height:auto;min-height:360px;padding-bottom:70px}
+      .band{font-size:18px;height:44px}
+  }
+  @media (max-width:560px){
+    .grid{grid-template-columns:1fr}
+    .mainbar{margin-top:10px}
+    .search{width:100%}
+    .hero{padding-top:190px}
+    .hero,.intro{padding-left:20px;padding-right:20px}
+    .hero h1,.intro h2{font-size:30px}
+    .band-a{top:120px}.band-b{top:520px}
+  }
+  @media (prefers-reduced-motion:reduce){.track{animation:none}}
+
+
+
+
+
+
+  /* =========================================================
+   LIGHT THEME — Portfolio page
+   Palette: bg #f4f6fb | card body #7aa2ff | text white
+   ========================================================= */
+
+body[data-theme="light"]{
+  --bg:#f4f6fb;
+  --navy:#eef1fa;
+  --gold:#f5a623;
+  --blue:#4d6cfa;
+  --text:#0b0f2b;
+  --muted:#6b7094;
+
+  /* v2 card tokens */
+  --pf-panel:#ffffff;
+  --pf-panel-2:#eef1fa;
+  --pf-line:rgba(11,15,43,0.08);
+  --pf-blue:#4d6cfa;
+  --pf-orange:#ff9f1c;
+  --pf-text:#0b0f2b;
+  --pf-muted:#4a4f74;
+  --pf-muted-2:#6b7094;
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Hero — light navy blend ---------- */
+body[data-theme="light"] .cp-hero-inner{
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%,
+      rgba(244,246,251,0)    0%,
+      rgba(244,246,251,0)    60%,
+      rgba(244,246,251,0.15) 82%,
+      rgba(244,246,251,0.55) 95%,
+      rgba(244,246,251,0.9)  100%),
+    linear-gradient(180deg,
+      rgba(244,246,251,0.10) 0%,
+      rgba(244,246,251,0)    15%,
+      rgba(244,246,251,0)    75%,
+      rgba(244,246,251,0.25) 88%,
+      rgba(244,246,251,0.65) 96%,
+      rgba(244,246,251,0.95) 100%),
+    url('/images/portfolio-hero-bg.png') center/cover no-repeat;
+}
+body[data-theme="light"] .cp-hero-text h1 .grad{
+  background: linear-gradient(95deg, #2540c9 0%, #3956e8 55%, #4d6cfa 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+
+/* Arrow icon — blue on light theme (no hover) */
+body[data-theme="light"] .view .arrow svg path{
+  stroke: #4d6cfa;
+}
+
+/* Light theme hero text — image dark hai, text light chahiye */
+body[data-theme="light"] .cp-hero-text h1{
+  color: #ffffff;
+}
+body[data-theme="light"] .cp-hero-text h1 .grad{
+  background: linear-gradient(95deg, #7aa2ff 0%, #b3c6ff 55%, #ffffff 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+body[data-theme="light"] .cp-hero-text p{
+  color: rgba(255,255,255,0.85);
+}
+
+
+/* ---------- Intro ---------- */
+body[data-theme="light"] .intro h2{ color: #0b0f2b; }
+body[data-theme="light"] .intro p{ color: #4a4f74; }
+
+/* ---------- Card outer frame (blue border ring) ---------- */
+body[data-theme="light"] .card{
+  background: #4d6cfa;
+}
+body[data-theme="light"] .card::after{
+  background: conic-gradient(from 200deg, #ffab1e, transparent 30%, transparent 70%, #4d6cfa);
+  opacity: .5;
+}
+body[data-theme="light"] .card:hover{
+  filter: drop-shadow(0 22px 34px rgba(37,64,201,0.35));
+}
+
+/* ---------- Card inner — white (image area safe) ---------- */
+body[data-theme="light"] .card-inner{
+  background: #ffffff;
+}
+
+/* ---------- Content (text wala portion) — solid blue ---------- */
+body[data-theme="light"] .content{
+  background: #7aa2ff;
+}
+
+/* ---------- Media — no overlay, image clear ---------- */
+body[data-theme="light"] .media::after{
+  background: none;
+}
+
+/* ---------- Text on blue ---------- */
+body[data-theme="light"] .content .cat{
+  color: #ffab1e;
+}
+body[data-theme="light"] .content h3{
+  color: #ffffff;
+}
+
+/* ---------- Foot divider + Read More ---------- */
+body[data-theme="light"] .foot{
+  border-top-color: rgba(255,255,255,0.25);
+}
+body[data-theme="light"] .view{
+  color: #ffffff;
+}
+body[data-theme="light"] .view .arrow{
+  background: #ffffff;
+}
+body[data-theme="light"] .card:hover .view .arrow{
+  background: #ffab1e;
+}
+
+/* ---------- Badge ---------- */
+body[data-theme="light"] .badge{
+  background: #ffffff;
+  border-color: rgba(11,15,43,0.10);
+  box-shadow: 0 0 0 4px #f4f6fb, 0 8px 18px rgba(11,15,43,0.18);
+}
+
+/* ---------- Marquee bands ---------- */
+body[data-theme="light"] .band-a{
+  background: rgba(11,15,43,0.06);
+  color: #6b7094;
+}
+body[data-theme="light"] .band-b{
+  background: #4d6cfa;
+  color: #ffffff;
+}
+body[data-theme="light"] .band-d{
+  background: linear-gradient(90deg, #3956e8, #4d6cfa);
+  color: #ffffff;
+}
+body[data-theme="light"] .band:hover{
+  background: linear-gradient(90deg, #2540c9 0%, #0b0f2b 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.15),
+    0 0 40px 4px rgba(77,108,250,.20),
+    0 20px 50px -15px rgba(11,15,43,.35);
+  color: #ffffff;
+}
+body[data-theme="light"] .band:hover .track span{
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* ---------- Status dot ---------- */
+body[data-theme="light"] .dot{
+  box-shadow: 0 0 0 5px rgba(34,197,94,.20);
+}
+
+
+
+
+
+
+
+/* =========================================================
+   FIX — Topbar + Header dono fixed, hero unke peeche
+   Sirf contact & portfolio pe (jahan .cp-hero ho).
+   Home page pe .hero hai, isliye koi effect nahi.
+   ========================================================= */
+
+/* Topbar — fixed, sabse upar */
+body:has(.cp-hero) .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+/* Header — fixed, topbar ke THEEK NEECHE
+   Topbar ki actual height match karne ke liye wahi formula
+   jo .topbar pe hai: 2.35 × clamp(11px, 1.19vw, 19px)
+   (--bar-h: 2.35em topbar ke font-size pe resolve hota hai) */
+body:has(.cp-hero) .site-header {
+  position: fixed;
+  top: calc(2.35 * clamp(11px, 1.19vw, 19px));
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Mobile pe topbar hidden hai — header top:0 pe chala jaye */
+@media (max-width: 900px) {
+  body:has(.cp-hero) .site-header {
+    top: 0;
+  }
+}

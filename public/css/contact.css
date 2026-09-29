@@ -88,25 +88,24 @@
 
 .cp-hero-inner {
     position: relative;
-    border-radius: 0;             /* koi rounded corner nahi */
+    border-radius: 0;
     overflow: hidden;
-    height: 380px;                /* thora aur bada — full bleed ke liye */
+    height: 515px;
     width: 100%;
-    /* Chaaron taraf se navy bg mein blend — koi edge/corner visible nahi.
-       Radial gradient center ko clear rakhta hai, kinare navy ho jaate hain. */
     background:
+        /* Neeche wala vignette halka rakha, top bilkul clear */
         radial-gradient(ellipse 90% 70% at 50% 50%,
             rgba(8, 11, 31, 0)    0%,
-            rgba(8, 11, 31, 0)    40%,
-            rgba(8, 11, 31, 0.35) 65%,
-            rgba(8, 11, 31, 0.85) 88%,
+            rgba(8, 11, 31, 0)    50%,
+            rgba(8, 11, 31, 0.25) 75%,
+            rgba(8, 11, 31, 0.75) 92%,
             rgba(8, 11, 31, 1)    100%),
          linear-gradient(180deg,
-            rgba(8, 11, 31, 0.6)  0%,
-            rgba(8, 11, 31, 0)    25%,
-            rgba(8, 11, 31, 0)    45%,
-            rgba(8, 11, 31, 0.7)  70%,
-            rgba(8, 11, 31, 0.95) 88%,
+            rgba(8, 11, 31, 0.15) 0%,     /* 0.6 → 0.15 (top halka) */
+            rgba(8, 11, 31, 0)    20%,    /* jaldi transparent */
+            rgba(8, 11, 31, 0)    55%,
+            rgba(8, 11, 31, 0.5)  75%,
+            rgba(8, 11, 31, 0.9)  90%,
             rgba(8, 11, 31, 1)    100%),
         url('/images/hero-desk.png') center/cover no-repeat;
 }
@@ -280,23 +279,35 @@
         font-weight: 700;
         margin: 0 0 16px;
     }
-    .cp-form-card {
-        background: var(--white);
-        color: #1b1d2a;
-        border-radius: 18px;
-        padding: 28px;
-    }
+
+.cp-form-card {
+    background: linear-gradient(155deg, #0B0F2B 0%, #142050 55%, var(--blue-light) 140%);
+    border: 1px solid rgba(122,162,255,0.18);
+    box-shadow: 0 24px 60px -24px rgba(11,15,43,0.6);
+    color: #fff;
+    border-radius: 18px;
+    padding: 28px;
+}
+    
+
+
+
     .cp-form-card h3 {
-        margin: 0 0 4px;
-        font-size: 20px;
-        font-weight: 700;
-    }
-    .cp-form-card h3 .hi { color: var(--blue); }
-    .cp-form-card .sub {
-        margin: 0 0 20px;
-        font-size: 12px;
-        color: #7c7f92;
-    }
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+.cp-form-card h3 .hi { color: var(--blue-light); }
+.cp-form-card .sub {
+    margin: 0 0 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+}
+
+   
+
+
     .cp-form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -307,47 +318,112 @@
     .cp-field label {
         font-size: 12px;
         font-weight: 600;
-        color: #333;
+        /* color: #333; */
+         color: rgba(255,255,255,0.85)
     }
     .cp-field label .req { color: var(--orange); }
-    .cp-field input,
-    .cp-field textarea {
-        border: 1px solid #e4e5ec;
-        border-radius: 8px;
-        padding: 11px 12px;
-        font-size: 13px;
-        font-family: inherit;
-        outline: none;
-        background: #fafafe;
-    }
-    .cp-field input:focus,
-    .cp-field textarea:focus {
-        border-color: var(--blue);
-        background: #fff;
-    }
-    .cp-field textarea { resize: vertical; min-height: 90px; }
 
-    .cp-submit {
-        width: 100%;
-        border: none;
-        background: var(--blue);
-        color: #fff;
-        font-weight: 600;
-        font-size: 14px;
-        padding: 13px;
-        border-radius: 9px;
-        cursor: pointer;
-        margin-top: 6px;
-        transition: background 0.2s ease;
+
+    .cp-field input,
+.cp-field textarea {
+    border: 1px solid rgba(122,162,255,0.35);
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    background: rgba(8,11,31,0.35);
+    color: #fff;
+}
+.cp-field input::placeholder,
+.cp-field textarea::placeholder { color: rgba(255,255,255,0.45); }
+.cp-field input:focus,
+.cp-field textarea:focus {
+    border-color: var(--blue-light);
+    background: rgba(8,11,31,0.55);
+}
+.cp-field textarea { resize: vertical; min-height: 90px; }
+
+    
+
+.cp-submit {
+    position: relative;
+    width: 100%;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    margin-top: 6px;
+    overflow: hidden;
+    isolation: isolate;
+    z-index: 0;
+    box-shadow: 0 10px 26px -10px rgba(77,108,250,.65);
+    transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+
+/* Sliding fill — orange/gold accent, base blue se alag/prominent */
+.cp-submit::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, var(--orange), var(--orange-soft) 55%, #d97600);
+    transform: translateX(-102%);
+    transition: transform .9s cubic-bezier(.22,.8,.2,1);
+}
+
+/* Diagonal shine streak — thora delay se follow karta hai */
+.cp-submit::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 35%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,.45) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    transition: left 1s cubic-bezier(.22,.8,.2,1) .15s;
+}
+
+.cp-submit:hover {
+    color: #2a1600;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px -12px rgba(255,171,30,.75);
+}
+.cp-submit:hover::before {
+    transform: translateX(0);
+}
+.cp-submit:hover::after {
+    left: 130%;
+}
+.cp-submit:active {
+    transform: translateY(0) scale(.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cp-submit,
+    .cp-submit::before,
+    .cp-submit::after {
+        transition: none !important;
     }
-    .cp-submit:hover { background: #2b47e0; }
+    .cp-submit:hover {
+        transform: none;
+    }
+}
+
 
     .cp-privacy {
-        margin: 12px 0 0;
-        font-size: 11px;
-        color: #9497a8;
-        text-align: center;
-    }
+    margin: 12px 0 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+}
+    
 
     /* ---------- Contact strip ---------- */
     .cp-strip {
@@ -387,16 +463,7 @@
     height: 20px;
     display: block;
 }
-    /* .cp-strip-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-size: 15px;
-    } */
+    
 
 
     .cp-strip-icon.red { background: #ff5c5c; }
@@ -433,11 +500,8 @@
     line-height: 1.2;
     margin: 0 0 8px;
 }
-    /* .cp-bottom h3 {
-        color: var(--blue-light);
-        font-size: 22px;
-        margin: 0 0 6px;
-    } */
+    
+
     .cp-bottom-rule {
         width: 60px;
         height: 3px;
@@ -462,3 +526,270 @@
         .cp-strip { flex-direction: column; align-items: flex-start; }
         .cp-strip-divider { display: none; }
     }
+
+
+
+    /* =========================================================
+   LIGHT THEME — Contact page
+   Same palette as home.css light theme:
+   bg #f4f6fb | card #ffffff | text #0b0f2b | muted #6b7094
+   blue #4d6cfa | orange #ffab1e
+   ========================================================= */
+
+/* Scoped token overrides */
+body[data-theme="light"] .contact-page{
+  --navy: #f4f6fb;
+  --navy-soft: #ffffff;
+  --card-navy: #eef1fa;
+  --blue: #4d6cfa;
+  --blue-light: #3956e8;
+  --orange: #ffab1e;
+  --orange-soft: #f59500;
+  --white: #0b0f2b;          /* used as text color */
+  --muted: #6b7094;
+  --border: rgba(11,15,43,0.08);
+  background: var(--navy);
+  color: var(--white);
+}
+
+/* ---------- Nav (agar future mein use ho) ---------- */
+body[data-theme="light"] .contact-page .cp-nav-links{
+  background: #ffffff;
+  border-color: rgba(11,15,43,0.08);
+}
+body[data-theme="light"] .contact-page .cp-nav-links a{
+  color: #0b0f2b;
+}
+body[data-theme="light"] .contact-page .cp-nav-links a.active{
+  background: var(--orange);
+  color: #3a2100;
+}
+
+/* ---------- Hero — light navy blend ---------- */
+body[data-theme="light"] .contact-page .cp-hero-inner{
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 50%,
+      rgba(244,246,251,0)    0%,
+      rgba(244,246,251,0)    60%,
+      rgba(244,246,251,0.15) 82%,
+      rgba(244,246,251,0.55) 95%,
+      rgba(244,246,251,0.9)  100%),
+    linear-gradient(180deg,
+      rgba(244,246,251,0.10) 0%,
+      rgba(244,246,251,0)    15%,
+      rgba(244,246,251,0)    75%,
+      rgba(244,246,251,0.25) 88%,
+      rgba(244,246,251,0.65) 96%,
+      rgba(244,246,251,0.95) 100%),
+    url('/images/hero-desk.png') center/cover no-repeat;
+}
+
+/* "Contact" gradient word — darker blues for readability on light */
+body[data-theme="light"] .contact-page .cp-hero-text h1 .grad{
+  background: linear-gradient(95deg, #2540c9 0%, #3956e8 55%, #4d6cfa 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+
+
+/* Light theme hero text — image dark hai, text light chahiye */
+body[data-theme="light"] .contact-page .cp-hero-text h1{
+  color: #ffffff;
+}
+body[data-theme="light"] .contact-page .cp-hero-text h1 .grad{
+  background: linear-gradient(95deg, #7aa2ff 0%, #b3c6ff 55%, #ffffff 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+body[data-theme="light"] .contact-page .cp-hero-text p{
+  color: rgba(255,255,255,0.85);
+}
+
+/* ---------- Feature cards ---------- */
+body[data-theme="light"] .contact-page .cp-feature{
+  background: #ffffff;
+  border-color: rgba(11,15,43,0.06);
+  box-shadow: 0 8px 22px -14px rgba(11,15,43,0.18);
+}
+body[data-theme="light"] .contact-page .cp-feature-body h4{
+  color: #14172a;
+}
+body[data-theme="light"] .contact-page .cp-feature-body p{
+  color: #6a7090;
+}
+
+/* ---------- Office image — swap blue panel to orange tint
+             (exactly like home page light theme) ---------- */
+body[data-theme="light"] .contact-page .cp-office-image::before{
+  background: linear-gradient(135deg, #ffe4b8 0%, #ffd488 55%, #ffbe5c 100%);
+  box-shadow: 0 22px 55px -22px rgba(255,171,30,0.45);
+}
+
+/* ---------- Right label ---------- */
+body[data-theme="light"] .contact-page .cp-right-label{
+  color: #3956e8;
+}
+
+/* ---------- Form card — pale orange (same as home light theme) ---------- */
+body[data-theme="light"] .contact-page .cp-form-card{
+  background: #fff4e0;
+  border: 1px solid rgba(255,171,30,0.35);
+  box-shadow: 0 24px 60px -24px rgba(255,171,30,0.45);
+  color: #1b1d2a;
+}
+body[data-theme="light"] .contact-page .cp-form-card h3{
+  color: #1b1d2a;
+}
+body[data-theme="light"] .contact-page .cp-form-card h3 .hi{
+  color: #4d6cfa;
+}
+body[data-theme="light"] .contact-page .cp-form-card .sub{
+  color: #7c7f92;
+}
+
+body[data-theme="light"] .contact-page .cp-field label{
+  color: #333;
+}
+body[data-theme="light"] .contact-page .cp-field label .req{
+  color: #f59500;
+}
+
+body[data-theme="light"] .contact-page .cp-field input,
+body[data-theme="light"] .contact-page .cp-field textarea{
+  background: #ffffff;
+  border: 1px solid #f0d5a6;
+  color: #1b1d2a;
+}
+body[data-theme="light"] .contact-page .cp-field input::placeholder,
+body[data-theme="light"] .contact-page .cp-field textarea::placeholder{
+  color: #a08a63;
+}
+body[data-theme="light"] .contact-page .cp-field input:focus,
+body[data-theme="light"] .contact-page .cp-field textarea:focus{
+  border-color: #ffab1e;
+  background: #fffdf8;
+  outline: none;
+}
+
+/* ---------- Submit — orange base, blue slide-in (matches home) ---------- */
+body[data-theme="light"] .contact-page .cp-submit{
+  position: relative;
+  background: #ffab1e;
+  color: #3a2100;
+  overflow: hidden;
+  isolation: isolate;
+  z-index: 0;
+  box-shadow: 0 10px 26px -10px rgba(255,171,30,0.55);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+}
+body[data-theme="light"] .contact-page .cp-submit::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #4d6cfa, #3956e8 55%, #2540c9);
+  transform: translateX(-102%);
+  transition: transform .9s cubic-bezier(.22,.8,.2,1);
+}
+body[data-theme="light"] .contact-page .cp-submit::after{
+  content: "";
+  position: absolute;
+  top: 0; left: -60%;
+  width: 35%; height: 100%;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,.45) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: left 1s cubic-bezier(.22,.8,.2,1) .15s;
+}
+body[data-theme="light"] .contact-page .cp-submit:hover{
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -12px rgba(77,108,250,0.7);
+}
+body[data-theme="light"] .contact-page .cp-submit:hover::before{
+  transform: translateX(0);
+}
+body[data-theme="light"] .contact-page .cp-submit:hover::after{
+  left: 130%;
+}
+body[data-theme="light"] .contact-page .cp-submit:active{
+  transform: translateY(0) scale(.98);
+}
+
+body[data-theme="light"] .contact-page .cp-privacy{
+  color: #8a7a5c;
+}
+
+/* ---------- Contact strip ---------- */
+body[data-theme="light"] .contact-page .cp-strip{
+  background: #ffffff;
+  border-color: rgba(11,15,43,0.08);
+  box-shadow: 0 8px 26px -16px rgba(11,15,43,0.15);
+}
+body[data-theme="light"] .contact-page .cp-strip-item h5{
+  color: #6b7094;
+}
+body[data-theme="light"] .contact-page .cp-strip-item p{
+  color: #0b0f2b;
+}
+body[data-theme="light"] .contact-page .cp-strip-divider{
+  background: rgba(11,15,43,0.08);
+}
+
+/* ---------- Bottom CTA ---------- */
+body[data-theme="light"] .contact-page .cp-bottom h3{
+  color: #4d6cfa;
+}
+body[data-theme="light"] .contact-page .cp-bottom p{
+  color: #4a4f74;
+}
+
+@media (prefers-reduced-motion: reduce){
+  body[data-theme="light"] .contact-page .cp-submit,
+  body[data-theme="light"] .contact-page .cp-submit::before,
+  body[data-theme="light"] .contact-page .cp-submit::after{
+    transition: none !important;
+  }
+  body[data-theme="light"] .contact-page .cp-submit:hover{
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   FIX — Topbar + Header dono fixed, hero unke peeche
+   Sirf contact & portfolio pe (jahan .cp-hero ho).
+   Home page pe .hero hai, isliye koi effect nahi.
+   ========================================================= */
+
+/* Topbar — fixed, sabse upar */
+body:has(.cp-hero) .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+/* Header — fixed, topbar ke THEEK NEECHE
+   Topbar ki actual height match karne ke liye wahi formula
+   jo .topbar pe hai: 2.35 × clamp(11px, 1.19vw, 19px)
+   (--bar-h: 2.35em topbar ke font-size pe resolve hota hai) */
+body:has(.cp-hero) .site-header {
+  position: fixed;
+  top: calc(2.35 * clamp(11px, 1.19vw, 19px));
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Mobile pe topbar hidden hai — header top:0 pe chala jaye */
+@media (max-width: 900px) {
+  body:has(.cp-hero) .site-header {
+    top: 0;
+  }
+}

@@ -67,17 +67,43 @@ if (navToggle && mainNav) {
   
 
   /* ---- Light / dark theme toggle ---- */
-  var themeToggle = document.querySelector('.theme-toggle');
-  var savedTheme = localStorage.getItem('rr-theme');
-  if (savedTheme) document.body.setAttribute('data-theme', savedTheme);
+  /* ---- Light / dark theme toggle (Premium Version) ---- */
+var themeToggle = document.querySelector('.premium-toggle-input');
+var savedTheme = localStorage.getItem('rr-theme');
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var current = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', current);
-      localStorage.setItem('rr-theme', current);
+// Page load par saved theme apply karo
+if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+}
+
+// Checkbox ka initial state set karo based on current theme
+if (themeToggle) {
+    var currentTheme = document.body.getAttribute('data-theme') || 'dark';
+    themeToggle.checked = (currentTheme === 'dark');
+}
+
+function updateGlobeModel(theme) {
+    var viewer = document.getElementById('heroGlobe');
+    if (!viewer) return;
+    var src = theme === 'light' ? viewer.dataset.lightSrc : viewer.dataset.darkSrc;
+    if (src && viewer.getAttribute('src') !== src) {
+        viewer.setAttribute('src', src);
+    }
+}
+
+// Page load pe globe update karo
+updateGlobeModel(document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+// Event listener ko 'click' se 'change' kar diya kyunki ab yeh checkbox hai
+if (themeToggle) {
+    themeToggle.addEventListener('change', function () {
+        var current = this.checked ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', current);
+        localStorage.setItem('rr-theme', current);
+        updateGlobeModel(current);
     });
-  }
+}
+   
 
   /* ---- "Show More" expandable paragraph ---- */
   var showMoreBtn = document.querySelector('.show-more');
@@ -90,18 +116,63 @@ if (navToggle && mainNav) {
   }
 
   /* ---- Portfolio category tabs ---- */
-  var tabButtons = document.querySelectorAll('.portfolio__tabs button');
-  var portfolioItems = document.querySelectorAll('.portfolio__grid [data-category]');
-  tabButtons.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      tabButtons.forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      var category = btn.getAttribute('data-target');
-      portfolioItems.forEach(function (item) {
-        item.style.display = (category === 'all' || item.dataset.category === category) ? '' : 'none';
+    /* ---- Portfolio category tabs (bento version) ---- */
+  (function () {
+    var tabButtons = document.querySelectorAll('.portfolio-filter button');
+    var bento      = document.querySelector('.portfolio-bento');
+    if (!tabButtons.length || !bento) return;
+
+    var tiles = bento.querySelectorAll('.pb-tile[data-category]');
+
+    /* Auto-count update (optional but nice) */
+    function updateCounts() {
+      var total = tiles.length;
+      tabButtons.forEach(function (btn) {
+        var target = btn.dataset.target;
+        var countEl = btn.querySelector('.portfolio-filter__count');
+        if (!countEl) return;
+        if (target === 'all') {
+          countEl.textContent = String(total).padStart(2, '0');
+        } else {
+          var n = 0;
+          tiles.forEach(function (t) {
+            if (t.dataset.category === target) n++;
+          });
+          countEl.textContent = String(n).padStart(2, '0');
+        }
+      });
+    }
+    updateCounts();
+
+    tabButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        tabButtons.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+
+        var target = btn.dataset.target;
+        var isAll  = target === 'all';
+
+        bento.classList.toggle('is-filtered', !isAll);
+
+        tiles.forEach(function (tile) {
+          var match = isAll || tile.dataset.category === target;
+          tile.classList.toggle('is-hidden', !match);
+        });
       });
     });
-  });
+  })();
+  // var tabButtons = document.querySelectorAll('.portfolio__tabs button');
+  // var portfolioItems = document.querySelectorAll('.portfolio__grid [data-category]');
+  // tabButtons.forEach(function (btn) {
+  //   btn.addEventListener('click', function () {
+  //     tabButtons.forEach(function (b) { b.classList.remove('is-active'); });
+  //     btn.classList.add('is-active');
+  //     var category = btn.getAttribute('data-target');
+  //     portfolioItems.forEach(function (item) {
+  //       item.style.display = (category === 'all' || item.dataset.category === category) ? '' : 'none';
+  //     });
+  //   });
+  // });
 
   /* ---- Contact form (frontend-only placeholder, no backend yet) ---- */
   var contactForm = document.getElementById('contact-form');
@@ -169,24 +240,63 @@ if (navToggle && mainNav) {
     if (!raf) raf = requestAnimationFrame(tick);
   });
 })();
+
+ // 👇👇👇 YAHAN NAYA BLOCK PASTE KARO 👇👇👇
+  /* ============================================================
+     Portfolio bento — 3D tilt + spotlight (mouse-follow)
+     ============================================================ */
+  (function () {
+    var reduce   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (reduce || !canHover) return;
+
+    document.querySelectorAll('.portfolio-bento [data-tilt]').forEach(function (el) {
+      var rect;
+
+      function onMove(e) {
+        rect = el.getBoundingClientRect();
+        var x  = e.clientX - rect.left;
+        var y  = e.clientY - rect.top;
+        var px = x / rect.width;
+        var py = y / rect.height;
+
+        var rx = (py - 0.5) * -10;
+        var ry = (px - 0.5) *  12;
+
+        el.style.transform =
+          'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+        el.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      }
+
+      function onLeave() {
+        el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg)';
+      }
+
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+    });
+  })();
+  // ⬆️⬆️⬆️ YAHAN NAYA BLOCK KHATAM ⬆️⬆️⬆️
+
   
 
   /* ---- Active nav link on scroll ---- */
-  var sections = document.querySelectorAll('main [id]');
-  var navLinks = document.querySelectorAll('.main-nav a');
-  if ('IntersectionObserver' in window && sections.length) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (link) {
-  var linkHash = (link.getAttribute('href') || '').split('#')[1];
-             link.classList.toggle('is-active', linkHash === entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (section) { observer.observe(section); });
-  }
+  // var sections = document.querySelectorAll('main [id]');
+  // var navLinks = document.querySelectorAll('.main-nav a');
+  // if ('IntersectionObserver' in window && sections.length) {
+  //   var observer = new IntersectionObserver(function (entries) {
+  //     entries.forEach(function (entry) {
+  //       if (entry.isIntersecting) {
+  //         navLinks.forEach(function (link) {
+  // var linkHash = (link.getAttribute('href') || '').split('#')[1];
+  //            link.classList.toggle('is-active', linkHash === entry.target.id);
+  //         });
+  //       }
+  //     });
+  //   }, { rootMargin: '-45% 0px -50% 0px' });
+  //   sections.forEach(function (section) { observer.observe(section); });
+  // }
 
 
 
@@ -201,9 +311,13 @@ if (navToggle && mainNav) {
     ['.service-card',                'reveal', true],
     ['.why2__intro',                 'reveal'],
     ['.capability-card',             'reveal', true],
-    ['.portfolio__title',            'reveal'],
-    ['.portfolio__tabs',             'reveal-left'],
-    ['.portfolio__grid [data-category]', 'reveal', true],
+
+    ['.portfolio-bento__head', 'reveal'],
+['.pb-tile',               'reveal', true],
+    // ['.portfolio__title',            'reveal'],
+    // ['.portfolio__tabs',             'reveal-left'],
+    // ['.portfolio__grid [data-category]', 'reveal', true],
+
     ['.testimonial-card',            'reveal', true],
     ['.contact__art',                'reveal-left'],
     ['.contact__panel',              'reveal-right']
@@ -241,10 +355,7 @@ if (navToggle && mainNav) {
 
   targets.forEach(function (el) { revealObserver.observe(el); });
 
-  // Safety net: if something goes wrong (rare), don't leave content hidden.
-  // setTimeout(function () {
-  //   targets.forEach(function (el) { el.classList.add('is-visible'); });
-  // }, 2500);
+  
 })();
 
   
